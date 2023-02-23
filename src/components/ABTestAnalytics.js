@@ -37,7 +37,7 @@ export default class componentName extends Component {
         console.log("kuch galat aaya");
         swal("Something went wrong ", response.data.message, "error").then(
           () => {
-            window.location.href = `${process.env.FRONTEND_BASE}/dashboard`;
+            window.location.href = `${process.env.REACT_APP_FRONTEND_BASE}/dashboard`;
           }
         );
       }
@@ -50,7 +50,7 @@ export default class componentName extends Component {
       if (data) {
         this.setState({ loggedin: true });
       } else {
-        window.location.href = `${process.env.FRONTEND_BASE}/login`;
+        window.location.href = `${process.env.REACT_APP_FRONTEND_BASE}/login`;
         // window.location.href = "http://localhost:3000/login";
       }
     });

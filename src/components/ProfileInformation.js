@@ -45,7 +45,7 @@ export default function ProfileInformation({ user }) {
       ) {
         swal("Error ", response.data.message, "error").then(() => {
           // window.location.href = `http://localhost:3000/profile`;
-          window.location.href = `${process.env.FRONTEND_BASE}/profile`;
+          window.location.href = `${process.env.REACT_APP_FRONTEND_BASE}/profile`;
         });
       }
     }
