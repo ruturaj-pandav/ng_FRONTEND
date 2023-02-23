@@ -17,6 +17,7 @@ export default function AddNotification() {
 
   //
 
+  const [loading, setLoading] = useState(false);
   const [image, setimage] = useState(null);
   const [imagepath, setimagepath] = useState(null);
   const [imageErrMsg, setimageErrMsg] = useState("");
@@ -57,13 +58,13 @@ export default function AddNotification() {
   let navigate = useNavigate();
   let { website_id } = useParams();
   async function addNotification() {
+    setLoading(true);
     allErrorMsgNull();
     let accessToken = localStorage.getItem("accessToken");
 
     const formData = new FormData();
     formData.append("title", title);
     if (segmentno !== null) {
-
       formData.append("segment_id", parseInt(segmentno));
     }
     formData.append("body_text", body_text);
@@ -128,6 +129,7 @@ export default function AddNotification() {
         swal("Something went wrong ", response.data.message, "error");
       }
     }
+    setLoading(false);
   }
 
   async function getsegments() {
@@ -222,7 +224,11 @@ export default function AddNotification() {
                   </option>
 
                   {segments.map((segment, index) => {
-                    return <option value={segment.id}  key={index}>{segment.name}</option>;
+                    return (
+                      <option value={segment.id} key={index}>
+                        {segment.name}
+                      </option>
+                    );
                   })}
                 </select>{" "}
                 <span className="text-red-500 text-sm  mt-2">
@@ -346,9 +352,13 @@ export default function AddNotification() {
               </div>
               <button
                 type="submit"
-                className="bg-blue-500 text-white py-1 px-2 block rounded "
+                className={` text-white py-1 px-2 block rounded  ${
+                  loading
+                    ? "hover:bg-blue-400 bg-blue-400 hover:cursor-not-allowed"
+                    : "hover:bg-blue-600 bg-blue-500 cursor-pointer"
+                }    `}
               >
-                Add Notification
+                {loading ? "Loading,  Please wait ... " : "Add Notification"}
               </button>
             </form>
           </div>

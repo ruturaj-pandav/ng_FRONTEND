@@ -121,15 +121,7 @@ export default function ABTestList({ AB, getAB }) {
                     </td>
 
                     <td className=" px-1 md:px-6 py-2   ">
-                      {/* <button
-                        onClick={() => {
-                        //   setmoreinfo(true);
-                        //   setinfoon(index);
-                        }}
-                        className="bg-blue-400 hover:bg-blue-500 text-sm my-1 lg:my-0 block lg:inline w-full lg:w-fit  text-white py-1 px-2 mx-1 uppercase rounded-1 text-lg"
-                      >
-                        more info
-                      </button> */}
+                     
                       <button
                         onClick={() => {
                           navigate(
@@ -140,17 +132,7 @@ export default function ABTestList({ AB, getAB }) {
                       >
                         analytics
                       </button>
-                      {/* <button
-                        onClick={() => {
-                          navigate(
-                            `/website/${website_id}/notifications/edit/${notification.id}`,
-                            { state: { notification } }
-                          );
-                        }}
-                        className="bg-green-400 hover:bg-green-500 text-sm  text-white py-1 px-2 mx-1  rounded-1 text-lg"
-                      >
-                        view
-                      </button> */}
+               
                       <button
                         onClick={() => {
                           //

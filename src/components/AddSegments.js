@@ -9,6 +9,7 @@ import { goTo, verifyLogin } from "../helper.js";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function AddSegments() {
+  const [loading, setLoading] = useState(false);
   async function getcountries() {
     let response = await axios.get(
       `${process.env.REACT_APP_BACKEND_BASE}/subscriptions/listCountries`
@@ -61,6 +62,8 @@ export default function AddSegments() {
     setdeviceType("");
   }
   async function addsegment() {
+    setLoading(true);
+
     let accessToken = localStorage.getItem("accessToken");
 
     let sendlist = [];
@@ -157,6 +160,7 @@ export default function AddSegments() {
         }
       }
     }
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -244,10 +248,15 @@ export default function AddSegments() {
           </div>
           {errmsg && <span className="block text-red-500 my-3 ">{errmsg}</span>}
           <button
+            disabled={loading}
             type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white rounded py-1 px-2 block duration-100"
+            className={`  ${
+              loading
+                ? "hover:bg-blue-400 bg-blue-400 hover:cursor-not-allowed"
+                : "hover:bg-blue-600 bg-blue-500 cursor-pointer"
+            }  text-white rounded py-1 px-2 block duration-100`}
           >
-            Add segment
+            {loading ? "Loading..." : "Add segment"}
           </button>
         </form>
       </div>

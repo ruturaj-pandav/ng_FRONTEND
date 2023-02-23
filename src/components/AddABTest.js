@@ -15,6 +15,8 @@ import swal from "sweetalert";
 import chromeicon from "../images/chrome_image.jpeg";
 import mobile_view_backend from "../images/mobile_view_backend.png";
 export default function AddABTest() {
+  const [loading, setLoading] = useState(false);
+
   const [variant, setvariant] = useState(1);
   const [android_preview, set_android_preview] = useState(true);
   const [segmentno, setsegmentno] = useState(null);
@@ -43,6 +45,7 @@ export default function AddABTest() {
     setimage2ErrMsg("");
   }
   async function createAB() {
+    setLoading(true);
     allErrorMsg1Null();
     allErrorMsg2Null();
     // allErrorMsgNull();
@@ -144,6 +147,7 @@ export default function AddABTest() {
         swal("Something went wrong ", response.data.message, "error");
       }
     }
+    setLoading(false);
   }
   ///////////////
   const [loggedin, setloggedin] = useState(false);
@@ -634,14 +638,18 @@ export default function AddABTest() {
         </div>
         <div className="my-3 mx-2 ">
           {" "}
-          <button
+          <button disabled={loading}
             onClick={() => {
               createAB();
             }}
             type="submit"
-            className="bg-blue-500 text-white py-1 px-2 block rounded "
+            className={`text-white py-1 px-2 block rounded ${
+              loading
+                ? "hover:bg-blue-400 bg-blue-400 hover:cursor-not-allowed"
+                : "hover:bg-blue-600 bg-blue-500 cursor-pointer"
+            }   `}
           >
-            Continue
+             {loading ? 'Loading...' : 'Add ab test'}
           </button>
         </div>
       </div>

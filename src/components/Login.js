@@ -10,7 +10,7 @@ import NavbarComponent from "./NavbarComponent.js";
 export default function Login() {
   let navigate = useNavigate();
   const [loggedin, setloggedin] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     verifyLogin().then((data) => {
       if (data) {
@@ -25,6 +25,7 @@ export default function Login() {
   }, []);
 
   async function LoginFunction() {
+    setLoading(true);
     let response = await axios.post(
       `${process.env.REACT_APP_BACKEND_BASE}/users/login`,
       {
@@ -74,6 +75,7 @@ export default function Login() {
         );
       }
     }
+    setLoading(false);
   }
 
   const [email, setemail] = useState("");
@@ -130,11 +132,15 @@ export default function Login() {
                   </span>
                 ) : null}
               </div>
-              <button
+              <button  disabled={loading}
                 type="submit"
-                className="w-100 bg-blue-600 hover:bg-blue-500 rounded py-1 my-1 text-lg cursor-pointer text-white"
+                className={`w-100  ${
+                  loading
+                    ? "hover:bg-blue-400 bg-blue-400 hover:cursor-not-allowed"
+                    : "hover:bg-blue-600 bg-blue-500 cursor-pointer"
+                }    rounded py-1 my-1 text-lg text-white`}
               >
-                Login
+                {loading ? 'Loading...' : 'Login '}
               </button>{" "}
             </form>
             <span

@@ -10,10 +10,12 @@ export default class componentName extends Component {
     this.state = {
       website_id: window.location.href.split("/")[4],
       loggedin: false,
+      loading: false,
       AB: [],
     };
   }
   getAB = async () => {
+    
     console.log("get ab function");
     console.log("something in get ab test ");
     let accessToken = localStorage.getItem("accessToken");

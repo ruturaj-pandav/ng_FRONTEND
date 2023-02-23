@@ -22,12 +22,14 @@ export default function AddWebsite() {
       }
     });
   }, []);
+  const [loading, setLoading] = useState(false);
 
   const [name, setname] = useState("");
   const [domain, setdomain] = useState("");
   const [namemsg, setnamemsg] = useState("");
   const [domainmsg, setdomainmsg] = useState("");
   async function add() {
+    setLoading(true);
     let accessToken = localStorage.getItem("accessToken");
 
     let response = await axios.post(
@@ -78,12 +80,13 @@ export default function AddWebsite() {
         }
       }
     }
+    setLoading(false);
   }
   return (
     <>
       <NavbarComponent loggedin={loggedin} />
       <div className=" container  mt-5  ">
-        <div className=" w-full  md:w-1/2 mx-auto md:border py-3 px-4 rounded  "> 
+        <div className=" w-full  md:w-1/2 mx-auto md:border py-3 px-4 rounded  ">
           {" "}
           <form
             className="my-2"
@@ -124,11 +127,14 @@ export default function AddWebsite() {
             </div>
 
             <button
+              disabled={loading}
               type="submit"
-              className="mt-3 text-white bg-blue-700 p-2 rounded-1 hover:bg-blue-800"
+              className={`mt-3 text-white px-2  ${
+                loading && "cursor-not-allowed bg-blue-400 hover:bg-blue-400"
+              } bg-blue-600 hover:bg-blue-500 rounded py-1 my-1 text-lg cursor-pointer text-white `}
             >
               {" "}
-              Add Website
+              {loading ? "Loading..." : "Add website"}
             </button>
           </form>
         </div>

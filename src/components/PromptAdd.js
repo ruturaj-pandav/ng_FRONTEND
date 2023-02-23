@@ -34,6 +34,7 @@ export default function PromptAdd({}) {
     setPromptType("");
   }
   async function addprompts() {
+    setLoading(true)
     let accessToken = localStorage.getItem("accessToken");
 
     let response = await axios.post(
@@ -90,8 +91,10 @@ export default function PromptAdd({}) {
         swal("Something went wrong ", response.data.message, "error");
       }
     }
+    setLoading(false);
   }
   const [loggedin, setloggedin] = useState(false);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     verifyLogin().then((data) => {
       if (data) {
@@ -217,12 +220,17 @@ export default function PromptAdd({}) {
             <center>
               <button
                 type="submit"
+                disabled ={loading}
                 onClick={() => {
                   addprompts();
                 }}
-                className="text-white bg-blue-500 hover:bg-blue-600 rounded py-1 px-2 my-2 "
+                className={`text-white ${
+                  loading
+                    ? "hover:bg-blue-400 bg-blue-400 hover:cursor-not-allowed"
+                    : "hover:bg-blue-600 bg-blue-500 cursor-pointer"
+                }   rounded py-1 px-2 my-2  `}
               >
-                ADD PROMPT
+                {loading ? "Loading,  Please wait ... " : "Add Prompt"}
               </button>
             </center>
           </form>

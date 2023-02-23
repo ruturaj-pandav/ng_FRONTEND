@@ -1,7 +1,20 @@
-show image in more info (notification)
 
 
+loguot button not visibile in notification list
+loading on form submit
+website name in addnotifcation / add abtest
+seperate loggin / not logiin navbar
 analytics for ab test
+change base backend api
+
+
+
 edit segment works
 notify user if something went wrong while in backend ( on every request ) 
 none selected error - patil said
+show image in more info (notification)
+
+
+
+add ab test
+change password

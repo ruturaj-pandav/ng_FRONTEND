@@ -27,8 +27,6 @@ export default function SignUp() {
   const [password, setpassword] = useState("");
   const [email, setemail] = useState("");
 
-  const [isLoading, setLoading] = useState(false);
-
   async function SignUpFunction() {
     setLoading(true);
 
@@ -97,7 +95,7 @@ export default function SignUp() {
   const [lastnameMsg, setLastnameMsg] = useState(null);
   const [emailMsg, setEmailMsg] = useState(null);
   const [passwordMsg, setPasswordMsg] = useState(null);
-
+  const [loading, setLoading] = useState(false);
   const [accountCreated, setAccountCreated] = useState(null);
   //
   return (
@@ -173,10 +171,15 @@ export default function SignUp() {
                 ) : null}
               </div>
               <button
+                disabled={loading}
                 type="submit"
-                className="w-100 bg-blue-600 hover:bg-blue-500 rounded py-1 my-1 text-lg cursor-pointer text-white"
+                className={`w-100   ${
+                  loading
+                    ? "hover:bg-blue-400 bg-blue-400 hover:cursor-not-allowed"
+                    : "hover:bg-blue-600 bg-blue-500 cursor-pointer"
+                }     rounded py-1 my-1 text-lg text-white `}
               >
-                Create account
+                {loading ? "Loading..." : "Create account"}
               </button>{" "}
             </form>
             <span
