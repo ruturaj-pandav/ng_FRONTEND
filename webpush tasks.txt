@@ -1,0 +1,7 @@
+show image in more info (notification)
+
+
+analytics for ab test
+edit segment works
+notify user if something went wrong while in backend ( on every request ) 
+none selected error - patil said

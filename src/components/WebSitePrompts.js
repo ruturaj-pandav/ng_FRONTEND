@@ -1,0 +1,70 @@
+import React, { Component } from "react";
+import { verifyLogin } from "../helper";
+import axios from "axios";
+import { withRouter } from "react-router";
+import PromptsList from "./PromptsList";
+import NavbarComponent from "./NavbarComponent";
+import PromptAdd from "./PromptAdd";
+import swal from "sweetalert";
+export default class componentName extends Component {
+  constructor() {
+    super();
+    this.state = {
+      website_id: window.location.href.split("/")[4],
+      prompts: [],
+      loggedin: false,
+    };
+  }
+
+  getlistprompt = async () => {
+    let accessToken = localStorage.getItem("accessToken");
+
+    let response = await axios.post(
+      `${process.env.REACT_APP_BACKEND_BASE}/websites/listprompts`,
+      // `${process.env.BACKEND_URL}/websites/list`,
+      { website_id: this.state.website_id, filter: "all" },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    if (response.data.status) {
+
+      this.setState({ prompts:  response.data });
+    } else {
+      if (response.data.status === false && response.data.message !== "") {
+        swal("Something went wrong ", response.data.message, "error").then(
+          () => {
+            
+
+            // window.location.href = `http://localhost:3000/dashboard/`;
+            window.location.href = `${process.env.FRONTEND_BASE}/dashboard`;
+          }
+        );
+      }
+    }
+  };
+
+  componentDidMount() {
+    verifyLogin().then((data) => {
+      if (data) {
+        this.setState({ loggedin: true });
+      } else {
+        // window.location.href = "http://localhost:3000/login";
+        window.location.href = `${process.env.FRONTEND_BASE}/login`;
+      }
+    });
+    this.getlistprompt();
+  }
+  render() {
+    return (
+      <>
+        <NavbarComponent loggedin={this.state.loggedin} page  ="prompts" />
+        <div>
+          <PromptsList prompts={this.state.prompts} />
+        </div>
+      </>
+    );
+  }
+}
