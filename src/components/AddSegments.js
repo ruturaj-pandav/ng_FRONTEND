@@ -215,12 +215,16 @@ export default function AddSegments() {
               }}
               className="border rounded text-lg  py-1 px-2 md:w-3/4 w-full "
             >
-              <option value="" selected disabled hidden>
-                Choose here
-              </option>
+              {deviceType === "" && (
+                <option value="" selected disabled hidden>
+                  Choose here
+                </option>
+              )}
+
               <option value="Mobile">Mobile</option>
               <option value="Tablet">Tablet</option>
               <option value="Desktop">Desktop</option>
+              {deviceType !== "" && <option value="" className="bg-gray-500 py-3">Remove</option>}
             </select>
           </div>
           <div className="my-3 "></div>

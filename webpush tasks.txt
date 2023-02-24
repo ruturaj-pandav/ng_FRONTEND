@@ -1,7 +1,7 @@
 
 
 loguot button not visibile in notification list
-loading on form submit
+
 
 
 analytics for ab test
@@ -16,5 +16,3 @@ show image in more info (notification)
 
 
 
-
-change password

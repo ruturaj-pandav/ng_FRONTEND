@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import NavbarLogin from "./Navbar_Login"
+import NavbarLogin from "./Navbar_Login";
 import { useParams, useNavigate } from "react-router-dom";
 import Switch from "react-switch";
 import { IoIosArrowDropup } from "react-icons/io";
@@ -200,11 +200,15 @@ export default function AddNotification() {
   }, []);
   const [segmentno, setsegmentno] = useState(null);
   function handleChange_SEGMENT(event) {
-    setsegmentno(event.target.value);
+    if (event.target.value === "Remove") {
+      setsegmentno(null);
+    } else {
+      setsegmentno(event.target.value);
+    }
   }
   return (
     <>
-      {loggedin && <NavbarLogin page  ="notifications" />}
+      {loggedin && <NavbarLogin page="notifications" />}
       <div className="container-sm ">
         <div className=" grid grid-cols-2 gap-5 w-full  mx-auto">
           <div className="shadow m-3 px-5 py-3 rounded col-span-2 md:col-span-1 ">
@@ -226,9 +230,11 @@ export default function AddNotification() {
                   }}
                   className="border rounded py-1 px-2  block w-full sm:w-3/4"
                 >
-                  <option value="" selected disabled hidden>
-                    Choose here
-                  </option>
+                  {segmentno === null && (
+                    <option value="" selected disabled hidden>
+                      Choose here
+                    </option>
+                  )}
 
                   {segments.map((segment, index) => {
                     return (
@@ -237,6 +243,11 @@ export default function AddNotification() {
                       </option>
                     );
                   })}
+                  {segmentno !== null && (
+                    <option value={null} className="bg-gray-500 py-3">
+                      Remove
+                    </option>
+                  )}
                 </select>{" "}
                 <span className="text-red-500 text-sm  mt-2">
                   {segmentErrMsg}
@@ -358,7 +369,7 @@ export default function AddNotification() {
                   )}
               </div>
               <button
-              disabled = {loading}
+                disabled={loading}
                 type="submit"
                 className={` text-white py-1 px-2 block rounded  ${
                   loading

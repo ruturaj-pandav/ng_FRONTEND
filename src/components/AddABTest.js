@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import NavbarLogin from "./Navbar_Login"
+import NavbarLogin from "./Navbar_Login";
 import { useParams, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { useLocation } from "react-router-dom";
@@ -41,7 +41,11 @@ export default function AddABTest() {
   const [segmentno, setsegmentno] = useState(null);
   const [segmentnoErrMsg, setsegmentnoErrMsg] = useState(null);
   function handleChange_SEGMENT(event) {
-    setsegmentno(event.target.value);
+    if (event.target.value === "Remove") {
+      setsegmentno(null);
+    } else {
+      setsegmentno(event.target.value);
+    }
   }
   function handleChange_VARIANT() {
     if (variant === 1) {
@@ -279,7 +283,7 @@ export default function AddABTest() {
 
   return (
     <>
-      {loggedin && <NavbarLogin page  ="prompts" />}
+      {loggedin && <NavbarLogin page="prompts" />}
       <div className="container">
         {" "}
         <div className="  md:w-full   block shadow-sm my-3 p-3  mx-2">
@@ -600,17 +604,23 @@ export default function AddABTest() {
               }}
               className="border rounded py-1 px-2  block w-2/3 sm:w-1/3 "
             >
-              <option value="" selected disabled hidden>
-                Choose here
-              </option>
-
+              {segmentno === null && (
+                <option value="" selected disabled hidden>
+                  Choose here
+                </option>
+              )}
               {segments.map((segment, index) => {
                 return (
                   <option value={segment.id} key={index}>
                     {segment.name}
                   </option>
                 );
-              })}
+              })}{" "}
+              {segmentno !== null && (
+                <option value={null} className="bg-gray-500 py-3">
+                  Remove
+                </option>
+              )}
             </select>{" "}
             <span className="text-red-500 text-sm  mt-2">
               {segmentnoErrMsg}
