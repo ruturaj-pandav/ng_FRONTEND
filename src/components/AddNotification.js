@@ -358,6 +358,7 @@ export default function AddNotification() {
                   )}
               </div>
               <button
+              disabled = {loading}
                 type="submit"
                 className={` text-white py-1 px-2 block rounded  ${
                   loading

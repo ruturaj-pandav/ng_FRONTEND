@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import swal from "sweetalert";
 
-import NavbarLogin from "./Navbar_Login"
+import NavbarLogin from "./Navbar_Login";
 import { verifyLogin } from "../helper.js";
 import { useState, useEffect } from "react";
 
@@ -11,6 +11,7 @@ export default function PromptEdit({}) {
   let navigate = useNavigate();
   let location = useLocation();
 
+  const [loading, setLoading] = useState(false);
   let { website_id, prompt_id } = useParams();
   const [loggedin, setloggedin] = useState(true);
 
@@ -99,10 +100,11 @@ export default function PromptEdit({}) {
         }
       }
     }
+    setLoading(true);
   }
   return (
     <div>
-     {loggedin && <NavbarLogin page  ="prompts" />}
+      {loggedin && <NavbarLogin page="prompts" />}
       <div className="container mx-auto grid grid-cols-2 sm:gap-4  my-8  ">
         <div className=" col-span-2  md:col-span-2 lg:col-span-1">
           <h1 className=" text-2xl block font-medium">Edit prompt</h1>
@@ -192,11 +194,16 @@ export default function PromptEdit({}) {
           </form>
 
           <button
+            disabled={loading}
             type="submit"
             onClick={() => {
               editprompt();
             }}
-            className="  text-white   bg-gray-700 hover:bg-gray-900 rounded-1 py-1 px-2 my-2 "
+            className={` text-white   bg-gray-700 hover:bg-gray-900 rounded-1 py-1 px-2 my-2 ${
+              loading
+                ? "hover:bg-blue-400 bg-blue-400 hover:cursor-not-allowed"
+                : "hover:bg-blue-600 bg-blue-500 cursor-pointer"
+            }  `}
           >
             Edit Prompt
           </button>

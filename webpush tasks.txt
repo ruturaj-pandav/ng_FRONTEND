@@ -3,7 +3,7 @@
 loguot button not visibile in notification list
 loading on form submit
 
-seperate loggin / not logiin navbar
+
 analytics for ab test
 change base backend api
 
@@ -16,5 +16,5 @@ show image in more info (notification)
 
 
 
-add ab test
+
 change password

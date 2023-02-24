@@ -1,9 +1,26 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
+import { verifyLogin } from "../helper";
 import swal from "sweetalert";
 import axios from "axios";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 export default function ProfileInformation({ user }) {
+
+  let navigate  = useNavigate();
+  const [loggedin  , setloggedin] = useState(false)
+  useEffect(() => {
+    console.log("donig this in profile information")
+    verifyLogin().then((data) => {
+      if (data) {
+        setloggedin(true);
+      } else {
+        setloggedin(false);
+        navigate("/login");
+      }
+    });
+  }, []);
   async function changepassword() {
+    setLoading(true)
     setnew_passwordErrMsg("");
     setcurrent_passwordErrMsg("");
 
@@ -49,12 +66,14 @@ export default function ProfileInformation({ user }) {
         });
       }
     }
+    setLoading(false)
   }
   const [currentpass, setcurrentpass] = useState("");
   const [newpass, setnewpass] = useState("");
   const [current_passwordErrMsg, setcurrent_passwordErrMsg] = useState("");
   const [new_passwordErrMsg, setnew_passwordErrMsg] = useState("");
   const [showchangepassword, setshowchangepassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   return (
     <div className=" lg:w-1/2  mx-auto py-1">
       <div className="border-2 shadow-lg rounded  p-5 my-2">
@@ -90,18 +109,19 @@ export default function ProfileInformation({ user }) {
             disabled
             value={moment(new Date(user.createdAt)).format("DD MMMM YYYY ")}
           />
-        </div>     {!showchangepassword && (
-        <button
-          className="bg-yellow-500 text-white py-1 px-2 mt-3 rounded "
-          onClick={() => {
-            setshowchangepassword(!showchangepassword);
-          }}
-        >
-          Change password
-        </button>
-      )}
+        </div>{" "}
+        {!showchangepassword && (
+          <button
+            className="bg-yellow-500 text-white py-1 px-2 mt-3 rounded "
+            onClick={() => {
+              setshowchangepassword(!showchangepassword);
+            }}
+          >
+            Change password
+          </button>
+        )}
       </div>
- 
+
       {showchangepassword && (
         <>
           {" "}
@@ -166,7 +186,8 @@ export default function ProfileInformation({ user }) {
                     Close
                   </button>
                   <button
-                    className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    disabled={loading}
+                    className={`bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150`}
                     onClick={() => {
                       changepassword();
                     }}

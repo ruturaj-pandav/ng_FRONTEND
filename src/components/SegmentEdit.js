@@ -236,6 +236,7 @@ export default function SegmentEdit({}) {
           {/* {errmsg && <span className="block text-red-500 my-3 ">{errmsg}</span>} */}
           <button
             type="submit"
+            // disabled = {loading}
             className="bg-blue-500 hover:bg-blue-600 text-white rounded py-1 px-2 block duration-100"
           >
             Edit segment
