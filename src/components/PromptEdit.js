@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import swal from "sweetalert";
 
-import NavbarComponent from "./NavbarComponent.js";
+import NavbarLogin from "./Navbar_Login"
 import { verifyLogin } from "../helper.js";
 import { useState, useEffect } from "react";
 
@@ -102,7 +102,7 @@ export default function PromptEdit({}) {
   }
   return (
     <div>
-      <NavbarComponent loggedin={loggedin} page="prompts" />
+     {loggedin && <NavbarLogin page  ="prompts" />}
       <div className="container mx-auto grid grid-cols-2 sm:gap-4  my-8  ">
         <div className=" col-span-2  md:col-span-2 lg:col-span-1">
           <h1 className=" text-2xl block font-medium">Edit prompt</h1>

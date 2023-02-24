@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import NavbarComponent from "./NavbarComponent";
+import NavbarLogin from "./Navbar_Login"
 import NotificationsList from "./NotificationsList";
 import { verifyLogin } from "../helper";
 import axios from "axios";
@@ -123,7 +123,7 @@ export default class componentName extends Component {
   render() {
     return (
       <>
-        <NavbarComponent loggedin={this.state.loggedin} page="notifications" />
+       {this.state.loggedin && <NavbarLogin page  ="notifications" />}
         <div>
           <NotificationsList
             website_domain={this.state.website_domain}

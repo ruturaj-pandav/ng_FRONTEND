@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
 import Modal from "./Modal.js";
-import NavbarComponent from "./NavbarComponent.js";
+import NavbarLogin from "./Navbar_Login"
 
 export default function AnalyticsFigures({ analytics }) {
   let navigate = useNavigate();

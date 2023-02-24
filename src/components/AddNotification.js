@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import NavbarComponent from "./NavbarComponent";
+import NavbarLogin from "./Navbar_Login"
 import { useParams, useNavigate } from "react-router-dom";
 import Switch from "react-switch";
 import { IoIosArrowDropup } from "react-icons/io";
@@ -204,7 +204,7 @@ export default function AddNotification() {
   }
   return (
     <>
-      <NavbarComponent loggedin={loggedin} page="notifications" />
+      {loggedin && <NavbarLogin page  ="notifications" />}
       <div className="container-sm ">
         <div className=" grid grid-cols-2 gap-5 w-full  mx-auto">
           <div className="shadow m-3 px-5 py-3 rounded col-span-2 md:col-span-1 ">

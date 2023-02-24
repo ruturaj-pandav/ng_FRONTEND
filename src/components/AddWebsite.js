@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
-import NavbarComponent from "./NavbarComponent";
+import NavbarLogin from "./Navbar_Login"
 import Container from "react-bootstrap/Container";
 
 import { goTo, verifyLogin } from "../helper";
@@ -84,7 +84,7 @@ export default function AddWebsite() {
   }
   return (
     <>
-      <NavbarComponent loggedin={loggedin} />
+      {loggedin && <NavbarLogin page  ="prompts" />}
       <div className=" container  mt-5  ">
         <div className=" w-full  md:w-1/2 mx-auto md:border py-3 px-4 rounded  ">
           {" "}

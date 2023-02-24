@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Websites from "./Websites.js";
-import NavbarComponent from "./NavbarComponent.js";
+import NavbarLogin from "./Navbar_Login.js";
 import axios from "axios";
 
 import { verifyLogin } from "../helper.js";
@@ -55,7 +55,7 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div>
-        <NavbarComponent loggedin={this.state.loggedin} />
+        {this.state.loggedin && <NavbarLogin />}
         <Websites
           loggedin={this.state.loggedin}
           website_data={this.state.website_data}

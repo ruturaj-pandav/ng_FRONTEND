@@ -3,7 +3,7 @@ import { verifyLogin } from "../helper";
 import axios from "axios";
 import { withRouter } from "react-router";
 import PromptsList from "./PromptsList";
-import NavbarComponent from "./NavbarComponent";
+import NavbarLogin from "./Navbar_Login"
 import PromptAdd from "./PromptAdd";
 import swal from "sweetalert";
 export default class componentName extends Component {
@@ -60,7 +60,7 @@ export default class componentName extends Component {
   render() {
     return (
       <>
-        <NavbarComponent loggedin={this.state.loggedin} page  ="prompts" />
+        {this.state.loggedin && <NavbarLogin page  ="prompts" />}
         <div>
           <PromptsList prompts={this.state.prompts} />
         </div>

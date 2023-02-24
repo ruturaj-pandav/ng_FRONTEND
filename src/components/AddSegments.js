@@ -3,7 +3,7 @@ import fileDownload from "js-file-download";
 import axios from "axios";
 import swal from "sweetalert";
 import Multiselect from "multiselect-react-dropdown";
-import NavbarComponent from "./NavbarComponent.js";
+import NavbarLogin from "./Navbar_Login.js";
 import { useState, useEffect } from "react";
 import { goTo, verifyLogin } from "../helper.js";
 import { useNavigate, useParams } from "react-router-dom";
@@ -178,7 +178,7 @@ export default function AddSegments() {
 
   return (
     <>
-      <NavbarComponent loggedin={loggedin} page="segments" />
+      {loggedin && <NavbarLogin page="segments" />}
       <div className="container mx-auto ">
         <form
           className="w-full lg:w-2/3  mx-auto shadow mx-2 p-4  my-8  md:border rounded  md:p-8"

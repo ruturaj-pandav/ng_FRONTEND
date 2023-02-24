@@ -2,7 +2,7 @@ import React from "react";
 import fileDownload from "js-file-download";
 import axios from "axios";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import NavbarComponent from "./NavbarComponent.js";
+import NavbarLogin from "./Navbar_Login";
 import { useState, useEffect } from "react";
 import { goTo, verifyLogin } from "../helper.js";
 import { useNavigate, useParams } from "react-router-dom";
@@ -45,7 +45,7 @@ export default function WebsiteIntegration() {
   }, []);
   return (
     <>
-      <NavbarComponent loggedin={loggedin} />
+   {loggedin &&    <NavbarLogin />}
       <div className="container mx-auto ">
         <div className="  px-4 rounded my-3 w-full md:w-2/3 lg:w-1/2 mx-auto  p-2  sm:shadow sm:border-gray-200">
           <span className="text-4xl block my-6 text-gray-500 font-sans">

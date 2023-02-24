@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SegmentsList from "./SegmentsList";
-import NavbarComponent from "./NavbarComponent";
+import NavbarLogin from "./Navbar_Login";
 import { verifyLogin } from "../helper.js";
 import axios from "axios";
 import swal from "sweetalert";
@@ -93,7 +93,7 @@ export default class componentName extends Component {
   render() {
     return (
       <>
-        <NavbarComponent loggedin={this.state.loggedin} page="segments" />
+    {this.state.loggedin &&     <NavbarLogin page="segments" />}
         <div>
           <SegmentsList
             

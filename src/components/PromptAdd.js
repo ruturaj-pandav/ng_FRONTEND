@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { verifyLogin } from "../helper";
 import swal from "sweetalert";
-import NavbarComponent from "./NavbarComponent";
+import NavbarLogin from "./Navbar_Login"
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 export default function PromptAdd({}) {
@@ -107,7 +107,7 @@ export default function PromptAdd({}) {
   }, []);
   return (
     <>
-      <NavbarComponent loggedin={loggedin} page="prompts" />
+       {loggedin && <NavbarLogin page  ="prompts" />}
       <div className="container mx-auto grid grid-cols-2 sm:gap-4  my-8  ">
         <div className=" col-span-2  md:col-span-2 lg:col-span-1">
           {" "}

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import NavbarComponent from "./NavbarComponent";
+import NavbarLogin from "./Navbar_Login"
 import { useParams, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { useLocation } from "react-router-dom";
@@ -279,7 +279,7 @@ export default function AddABTest() {
 
   return (
     <>
-      <NavbarComponent loggedin={loggedin} page="ab" />
+      {loggedin && <NavbarLogin page  ="prompts" />}
       <div className="container">
         {" "}
         <div className="  md:w-full   block shadow-sm my-3 p-3  mx-2">

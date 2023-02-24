@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import NavbarComponent from "./NavbarComponent";
+import NavbarLogin from "./Navbar_Login"
 import ProfileInformation from "./ProfileInformation";
 import axios from "axios";
 import moment from "moment";
@@ -55,7 +55,7 @@ export default class componentName extends Component {
   render() {
     return (
       <>
-        <NavbarComponent loggedin={this.state.loggedin} />
+         {this.state.loggedin && <NavbarLogin    />}
         <div className="container mx-auto w-full sm:w-3/4 md:w-2/3  px-3  ">
           <ProfileInformation user=  {this.state.user} />
         </div>

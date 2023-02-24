@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { verifyLogin } from "../helper";
-import NavbarComponent from "./NavbarComponent";
+import NavbarLogin from "./Navbar_Login"
 import ABTestList from "./ABTestList";
 import axios from "axios";
 import swal from "sweetalert";
@@ -106,7 +106,7 @@ export default class componentName extends Component {
   render() {
     return (
       <>
-        <NavbarComponent loggedin={this.state.loggedin} page="ab" />
+          {this.state.loggedin && <NavbarLogin page  ="ab" />}
         <div>
           <ABTestList AB={this.state.AB} getAB={this.getAB} website_domain={this.state.website_domain}/>
         </div>

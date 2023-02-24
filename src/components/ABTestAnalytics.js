@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import NavbarComponent from "./NavbarComponent";
+import NavbarLogin from "./Navbar_Login"
 import ABTestAnalyticsFigures from "./ABTestAnalyticsFigures";
 import swal from "sweetalert";
 import { verifyLogin } from "../helper";
@@ -59,7 +59,7 @@ export default class componentName extends Component {
   render() {
     return (
       <>
-        <NavbarComponent loggedin={this.state.loggedin} />
+       {this.state.loggedin && <NavbarLogin page  ="ab" />}
         <ABTestAnalyticsFigures ab_analytics={this.state.ab_analytics} />
       </>
     );
