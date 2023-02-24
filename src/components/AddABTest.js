@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import NavbarComponent from "./NavbarComponent";
 import { useParams, useNavigate } from "react-router-dom";
 import moment from "moment";
+import { useLocation } from "react-router-dom";
 import { RxCross1 } from "react-icons/rx";
 import axios from "axios";
 import { IoIosArrowDropup } from "react-icons/io";
@@ -15,6 +16,24 @@ import swal from "sweetalert";
 import chromeicon from "../images/chrome_image.jpeg";
 import mobile_view_backend from "../images/mobile_view_backend.png";
 export default function AddABTest() {
+  useEffect(() => {
+    verifyLogin().then((data) => {
+      if (data) {
+        // goTo("dashboard");
+        setloggedin(true);
+        getsegments();
+      } else {
+        navigate("/login");
+      }
+    });
+  }, []);
+  const location = useLocation();
+
+  const website_domain =
+    location.state !== null &&
+    (location.state.website_domain
+      ? location.state.website_domain
+      : "example.com");
   const [loading, setLoading] = useState(false);
 
   const [variant, setvariant] = useState(1);
@@ -257,17 +276,7 @@ export default function AddABTest() {
       }
     }
   }
-  useEffect(() => {
-    verifyLogin().then((data) => {
-      if (data) {
-        // goTo("dashboard");
-        setloggedin(true);
-        getsegments();
-      } else {
-        navigate("/login");
-      }
-    });
-  }, []);
+
   return (
     <>
       <NavbarComponent loggedin={loggedin} page="ab" />
@@ -474,7 +483,7 @@ export default function AddABTest() {
                           src={chromeicon}
                         />
                         <span className="mx-2 text-xs lg:text-sm  text-gray-500">
-                          mytoolstown.com
+                          {website_domain}
                         </span>
                         <span className="text-xs text-gray-500">now</span>
                       </div>
@@ -596,7 +605,11 @@ export default function AddABTest() {
               </option>
 
               {segments.map((segment, index) => {
-                return <option value={segment.id}  key={index}>{segment.name}</option>;
+                return (
+                  <option value={segment.id} key={index}>
+                    {segment.name}
+                  </option>
+                );
               })}
             </select>{" "}
             <span className="text-red-500 text-sm  mt-2">
@@ -638,7 +651,8 @@ export default function AddABTest() {
         </div>
         <div className="my-3 mx-2 ">
           {" "}
-          <button disabled={loading}
+          <button
+            disabled={loading}
             onClick={() => {
               createAB();
             }}
@@ -649,7 +663,7 @@ export default function AddABTest() {
                 : "hover:bg-blue-600 bg-blue-500 cursor-pointer"
             }   `}
           >
-             {loading ? 'Loading...' : 'Add ab test'}
+            {loading ? "Loading..." : "Add ab test"}
           </button>
         </div>
       </div>

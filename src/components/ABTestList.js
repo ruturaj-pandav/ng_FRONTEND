@@ -5,10 +5,10 @@ import Loader from "./Loader";
 import swal from "sweetalert";
 import moment from "moment";
 import axios from "axios";
-export default function ABTestList({ AB, getAB }) {
+export default function ABTestList({ AB, getAB  , website_domain}) {
 
   async function deleteAB(ab_test_id) {
-    console.log("deleting ab" , ab_test_id)
+
     let accessToken = localStorage.getItem("accessToken");
 
     let response = await axios.post(
@@ -22,11 +22,11 @@ export default function ABTestList({ AB, getAB }) {
       }
     );
     if (response) {
-      console.log(response.data);
+     
       if (response.data.status === true) {
         getAB();
         swal("Deleted ", response.data.message, "success").then((response) => {
-          console.log("here .. getting")
+       
           getAB();
 
         });
@@ -166,7 +166,9 @@ export default function ABTestList({ AB, getAB }) {
         )}
         <button
           onClick={() => {
-            navigate(`/website/${website_id}/ab/add`);
+            navigate(`/website/${website_id}/ab/add` , {
+              state: { website_domain: website_domain },
+            });
           }}
           className="text-white   bg-gray-700 hover:bg-gray-900 rounded-1 py-1 px-2 my-2"
         >

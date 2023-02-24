@@ -11,10 +11,12 @@ export default class componentName extends Component {
       website_id: window.location.href.split("/")[4],
       loggedin: false,
       notifications: [],
+
+      website_domain: "",
     };
   }
   getnotifications = async () => {
-    console.log("get notification function")
+
     let accessToken = localStorage.getItem("accessToken");
 
     let response = await axios.post(
@@ -29,7 +31,6 @@ export default class componentName extends Component {
     );
     if (response.data.status) {
       this.setState({ notifications: response.data });
- 
     } else {
       if (response.data.status === false && response.data.message !== "") {
         swal("Something went wrong ", response.data.message, "error").then(
@@ -48,12 +49,60 @@ export default class componentName extends Component {
       } else {
         // window.location.href = "http://localhost:3000/login";
         window.location.href = `${process.env.REACT_APP_FRONTEND_BASE}/login`;
-        
       }
     });
     this.getnotifications();
+    this.getThisWebsiteDomain();
   }
 
+  getThisWebsiteDomain = async () => {
+    let accessToken = localStorage.getItem("accessToken");
+
+    let response = await axios.post(
+      `${process.env.REACT_APP_BACKEND_BASE}/websites/list`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    if (response) {
+      if (response.data.status) {
+        // this.setState({ website_data: response.data });
+
+        const target_id = this.state.website_id;
+        if (target_id !== null && target_id !== undefined) {
+
+
+          const targetObject = response.data.websites.find(
+            (obj) => obj.id === parseInt(target_id)
+          );
+
+          if (targetObject) {
+
+            let website_domain = targetObject.domain;
+            if (
+              website_domain !== "" &&
+              website_domain !== null &&
+              website_domain !== undefined
+            ) {
+              this.setState({ website_domain: website_domain });
+            }
+          } else {
+    
+          }
+        }
+      }
+      if (
+        response.data.status === false &&
+        response.data.message == "No websites found."
+      ) {
+        this.setState({ website_data: response.data });
+      }
+    } else {
+    }
+  };
   deletenotification = async (notification_id) => {
     let accessToken = localStorage.getItem("accessToken");
 
@@ -77,6 +126,7 @@ export default class componentName extends Component {
         <NavbarComponent loggedin={this.state.loggedin} page="notifications" />
         <div>
           <NotificationsList
+            website_domain={this.state.website_domain}
             notifications={this.state.notifications}
             getnotifications={this.getnotifications}
           />

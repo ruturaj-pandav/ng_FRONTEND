@@ -15,7 +15,7 @@ export default class componentName extends Component {
     };
   }
   getanalytics = async () => {
-    console.log("getting analytics ab test");
+    
     let accessToken = localStorage.getItem("accessToken");
 
     let response = await axios.post(
@@ -30,11 +30,11 @@ export default class componentName extends Component {
     );
     if (response) {
       if (response.data.status) {
-        console.log("response status for ab test ", response.data);
+       
         this.setState({ ab_analytics: response.data });
       }
       if (response.data.status === false && response.data.message !== "") {
-        console.log("kuch galat aaya");
+      
         swal("Something went wrong ", response.data.message, "error").then(
           () => {
             window.location.href = `${process.env.REACT_APP_FRONTEND_BASE}/dashboard`;
@@ -42,7 +42,7 @@ export default class componentName extends Component {
         );
       }
     } else {
-      console.log("no response");
+    
     }
   };
   componentDidMount() {

@@ -5,6 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Switch from "react-switch";
 import { IoIosArrowDropup } from "react-icons/io";
 import { RxCross1 } from "react-icons/rx";
+import { useLocation } from "react-router-dom";
 import chromeicon from "../images/chrome_image.jpeg";
 import { FaBatteryFull } from "react-icons/fa";
 import { BsWifi } from "react-icons/bs";
@@ -13,6 +14,12 @@ import axios from "axios";
 import { verifyLogin } from "../helper";
 import swal from "sweetalert";
 export default function AddNotification() {
+  const location = useLocation();
+  const website_domain =
+    location.state !== null &&
+    (location.state.website_domain
+      ? location.state.website_domain
+      : "example.com");
   const [segments, setsegments] = useState([]);
 
   //
@@ -392,7 +399,8 @@ export default function AddNotification() {
                           src={chromeicon}
                         />
                         <span className="mx-2 text-xs lg:text-sm text-gray-500">
-                          mytoolstown.com
+                          {/* mytoolstown.com */}
+                          {website_domain}
                         </span>
                         <span className="text-xs text-gray-500">now</span>
                       </div>

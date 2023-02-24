@@ -10,7 +10,7 @@ export default function SegmentsList({
   countries_list,
 }) {
   async function deletesegment(segment_id) {
-    console.log("deleting");
+
     let accessToken = localStorage.getItem("accessToken");
 
     let response = await axios.post(
@@ -24,9 +24,9 @@ export default function SegmentsList({
       }
     );
     if (response) {
-      console.log(response.data);
+     
       if (response.data.status === true) {
-        console.log("good status");
+ 
         swal("Deleted ", response.data.message, "success").then((response) => {
           getsegments();
         })

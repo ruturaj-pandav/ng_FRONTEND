@@ -6,7 +6,11 @@ import swal from "sweetalert";
 import moment from "moment";
 import axios from "axios";
 
-export default function NotificationsList({ notifications, getnotifications }) {
+export default function NotificationsList({
+  notifications,
+  getnotifications,
+  website_domain,
+}) {
   async function deletenotification(notification_id) {
     let accessToken = localStorage.getItem("accessToken");
 
@@ -21,11 +25,11 @@ export default function NotificationsList({ notifications, getnotifications }) {
       }
     );
     if (response) {
-      console.log(response.data);
+     
       if (response.data.status === true) {
         // getnotifications();
         swal("Deleted ", response.data.message, "success").then((response) => {
-          console.log("here .. getting");
+        
           getnotifications();
         });
       }
@@ -113,7 +117,7 @@ export default function NotificationsList({ notifications, getnotifications }) {
                 }
 
                 const newDate = subtractMinutes(dt, 330);
-            
+
                 return (
                   <tr
                     className={`text-left  text-sm cursor-pointer ${
@@ -203,7 +207,9 @@ export default function NotificationsList({ notifications, getnotifications }) {
         )}
         <button
           onClick={() => {
-            navigate(`/website/${website_id}/notification/add`);
+            navigate(`/website/${website_id}/notification/add`, {
+              state: { website_domain: website_domain },
+            });
           }}
           className="text-white   bg-gray-700 hover:bg-gray-900 rounded-1 py-1 px-2 my-2"
         >

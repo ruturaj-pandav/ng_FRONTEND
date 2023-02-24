@@ -9,15 +9,12 @@ export default function Websites({ loggedin, website_data }) {
   const [loader, setloader] = useState(true);
 
   useEffect(() => {
-   
     if (website_data.status === true) {
-    
       setloader(false);
     } else if (
       website_data.status === false &&
       website_data.message == "No websites found."
     ) {
-   
       setloader(false);
     }
   }, [website_data]);

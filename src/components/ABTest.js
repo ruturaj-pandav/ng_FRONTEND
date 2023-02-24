@@ -10,14 +10,61 @@ export default class componentName extends Component {
     this.state = {
       website_id: window.location.href.split("/")[4],
       loggedin: false,
+      website_domain: "",
       loading: false,
       AB: [],
     };
   }
+
+  getThisWebsiteDomain = async () => {
+    let accessToken = localStorage.getItem("accessToken");
+
+    let response = await axios.post(
+      `${process.env.REACT_APP_BACKEND_BASE}/websites/list`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    if (response) {
+      if (response.data.status) {
+        // this.setState({ website_data: response.data });
+
+        const target_id = this.state.website_id;
+        if (target_id !== null && target_id !== undefined) {
+       
+          const targetObject = response.data.websites.find(
+            (obj) => obj.id === parseInt(target_id)
+          );
+
+          if (targetObject) {
+           
+            let website_domain = targetObject.domain;
+            if (
+              website_domain !== "" &&
+              website_domain !== null &&
+              website_domain !== undefined
+            ) {
+              this.setState({ website_domain: website_domain });
+            }
+          } else {
+           
+          }
+        }
+      }
+      if (
+        response.data.status === false &&
+        response.data.message == "No websites found."
+      ) {
+        this.setState({ website_data: response.data });
+      }
+    } else {
+    }
+  };
   getAB = async () => {
     
-    console.log("get ab function");
-    console.log("something in get ab test ");
     let accessToken = localStorage.getItem("accessToken");
 
     let response = await axios.post(
@@ -31,7 +78,7 @@ export default class componentName extends Component {
       }
     );
     if (response.data.status) {
-      console.log("this data got ", response.data);
+     
       this.setState({ AB: response.data });
     } else {
       if (response.data.status === false && response.data.message !== "") {
@@ -54,13 +101,14 @@ export default class componentName extends Component {
     });
 
     this.getAB();
+    this.getThisWebsiteDomain();
   }
   render() {
     return (
       <>
         <NavbarComponent loggedin={this.state.loggedin} page="ab" />
         <div>
-          <ABTestList AB={this.state.AB} getAB={this.getAB} />
+          <ABTestList AB={this.state.AB} getAB={this.getAB} website_domain={this.state.website_domain}/>
         </div>
       </>
     );

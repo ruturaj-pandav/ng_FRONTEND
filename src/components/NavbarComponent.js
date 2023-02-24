@@ -194,7 +194,7 @@ export default function NavbarComponent({ loggedin, page }) {
             <span className="text-3xl block text-white">
               <ion-icon
                 onClick={() => {
-                  console.log("icon clicked");
+               
                   setopen(!open);
                 }}
                 name={`${open === true ? "close" : "menu"}`}

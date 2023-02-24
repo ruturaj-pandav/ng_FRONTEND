@@ -15,14 +15,14 @@ export default function SegmentEdit({}) {
   let countries_list = location.state.countries_list;
   const [options, setoptions] = useState([]);
   useEffect(() => {
-    console.log("countries list use effect");
+
     if (options.length !== 250 || countries_list.length !== 250) {
-      console.log("running set options function ");
+     
       setOptionsFunction();
     }
   }, [countries_list]);
   function setOptionsFunction() {
-    console.log("setting options");
+
    
     if (countries_list.length > 0) {
       countries_list.map((content, index) => {
@@ -32,7 +32,7 @@ export default function SegmentEdit({}) {
         };
         setoptions([...options , thiscountry])
       });
-      console.log("THESE ARE THE OPTIONS THAT WILL BE SET " )
+     
       
       selectedOptionsFunction();
     }
@@ -69,17 +69,17 @@ export default function SegmentEdit({}) {
       return countryname;
     }
     else {
-      console.log("condition  not satisfied in getcountry name function")
+    
     }
   }
   function selectedOptionsFunction() {
-    console.log("selected options function");
+ 
     let isequal = 0;
     let countries = [];
     let sel = [];
-    console.log("currently length is this " ,options.length , countries_list.length)
+   
     if ( countries_list.length > 0) {
-      console.log("condition satisfied");
+    
       if (
         segment.hasOwnProperty("segment_rules") &&
         segment.segment_rules.hasOwnProperty("countries")
@@ -99,7 +99,7 @@ export default function SegmentEdit({}) {
         };
         sel.push(thiscountry);
       });
-      console.log("this is sel ", sel);
+     
       setselected(sel);
     } else {
       // setOptionsFunction();
