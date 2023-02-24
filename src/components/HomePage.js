@@ -1,5 +1,5 @@
 import React from 'react'
-import NavbarComponent from "./NavbarComponent.js";
+import NavbarLogout from "./Navbar_Logout.js";
 import Features from "../homepageComponents/Features"
 import FAQ from "../homepageComponents/FAQ"
 import ContactForm from "../homepageComponents/ContactForm"
@@ -10,7 +10,7 @@ import CustomerReview from "../homepageComponents/CustomerReview"
 export default function HomePage() {
   return (
     <div className="bg-gray-100 ">
-      <NavbarComponent/>
+      <NavbarLogout/>
       <Features/>
       <FAQ/>
       <Pricing/>

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
 import Modal from "./Modal.js";
-import NavbarComponent from "./NavbarComponent.js";
+import NavbarLogout from "./Navbar_Logout.js";
 
 export default function Login() {
   let navigate = useNavigate();
@@ -85,7 +85,7 @@ export default function Login() {
 
   return (
     <>
-      <NavbarComponent loggedin={loggedin} />
+      <NavbarLogout />
 
       <div className="container mx-auto ">
         <div

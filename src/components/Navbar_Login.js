@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import swal from "sweetalert";
 import zomato from "../images/zomato-removebg-preview.png";
-export default function NavbarComponent({ page }) {
+export default function NavbarLogin({ page }) {
   let navigate = useNavigate();
   let { website_id } = useParams();
 

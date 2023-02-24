@@ -1,7 +1,7 @@
 import React from "react";
 import swal from "sweetalert";
 import axios from "axios";
-import NavbarComponent from "./NavbarComponent.js";
+import NavbarLogout from "./Navbar_Logout.js";
 import { useState, useEffect } from "react";
 import { goTo, verifyLogin } from "../helper.js";
 import { useNavigate } from "react-router-dom";
@@ -100,7 +100,7 @@ export default function SignUp() {
   //
   return (
     <>
-      <NavbarComponent loggedin={loggedin} />
+      <NavbarLogout />
       <div className="container mx-auto ">
         <div
           className="flex items-center sm:justify-center    "
