@@ -64,7 +64,7 @@ export default function WebsiteIntegration() {
               className="bg-gray-500 hover:bg-gray-600 duration-300 text-white rounded py-1 px-2"
               onClick={() =>
                 handleDownload(
-                  `${process.env.REACT_APP_BACKEND_BASE}/js/service-worker.js`,
+                  `${process.env.REACT_APP_BACKEND_BASE}/service-worker.js`,
                   "service-worker.js"
                 )
               }
