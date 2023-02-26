@@ -39,5 +39,5 @@ export async function logoutFunction() {
 }
 
 export function goTo(page) {
-  window.location.href = `http://localhost:3000/${page}`;
+  window.location.href = `${process.env.REACT_APP_FRONTEND_BASE}/${page}`;
 }
