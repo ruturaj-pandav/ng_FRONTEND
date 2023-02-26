@@ -29,7 +29,7 @@ export default function WebsiteIntegration() {
   }
 
   const [text, setText] = useState(
-    `<script src="${process.env.REACT_APP_LINK}" async=""></script>`
+    `<script src="${process.env.REACT_APP_BACKEND_BASE}/service-worker.js" async=""></script>`
   );
   const [isCopied, setIsCopied] = useState(false);
   useEffect(() => {
