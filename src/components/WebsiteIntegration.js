@@ -29,7 +29,7 @@ export default function WebsiteIntegration() {
   }
 
   const [text, setText] = useState(
-    `<script src="https://example.com/pushnotification.js" async=""></script>`
+    `<script src="${process.env.REACT_APP_LINK}" async=""></script>`
   );
   const [isCopied, setIsCopied] = useState(false);
   useEffect(() => {
