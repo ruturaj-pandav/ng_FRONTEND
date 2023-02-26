@@ -41,11 +41,14 @@ export default function AddABTest() {
   const [segmentno, setsegmentno] = useState(null);
   const [segmentnoErrMsg, setsegmentnoErrMsg] = useState(null);
   function handleChange_SEGMENT(event) {
+    console.log("this is event.target.value in ab test  : " ,event.target.value);
     if (event.target.value === "Remove") {
       setsegmentno(null);
     } else {
+      console.log("setting : " , event.target.value)
       setsegmentno(event.target.value);
     }
+    console.log("now segmentno : " , segmentno)
   }
   function handleChange_VARIANT() {
     if (variant === 1) {
