@@ -7,7 +7,36 @@ import zomato from "../images/zomato-removebg-preview.png";
 export default function NavbarLogin({ page }) {
   let navigate = useNavigate();
   let { website_id } = useParams();
+  const [openNavigation, setOpenNavigation] = useState(false);
+  const [openAB, setOpenAB] = useState(false);
+  const [openSegment, setOpenSegment] = useState(false);
+  const [openPrompt, setOpenPrompt] = useState(false);
+  const handleOpenNavigation = () => {
+    setOpenNavigation(!openNavigation);
+    setOpenAB(false);
 
+    setOpenPrompt(false);
+    setOpenSegment(false);
+  };
+  const handleOpenAB = () => {
+    setOpenAB(!openAB);
+    setOpenNavigation(false);
+    setOpenPrompt(false);
+    setOpenSegment(false);
+  };
+  const handleOpenPrompt = () => {
+    setOpenPrompt(!openPrompt);
+    setOpenAB(false);
+    setOpenNavigation(false);
+
+    setOpenSegment(false);
+  };
+  const handleOpenSegment = () => {
+    setOpenSegment(!openSegment);
+    setOpenPrompt(false);
+    setOpenAB(false);
+    setOpenNavigation(false);
+  };
   const [open, setopen] = useState(false);
   const [showitems, setshowitems] = useState(false);
   const [showcontent, setshowcontent] = useState(false);
@@ -32,88 +61,127 @@ export default function NavbarLogin({ page }) {
               }}
               className=" mx-3 text-white  hover:text-gray-400 cursor-pointer duration-300"
             >
-              Dashboard
+              Your websites
             </span>
-
-            {page === "notifications" && (
-              <>
-                <span
-                  onClick={() => {
-                    navigate(`/website/${website_id}/notification/add`);
-                  }}
-                  className=" mx-3 text-white  hover:text-gray-400 cursor-pointer duration-300"
-                >
-                  Create notification
-                </span>
-                <span
-                  onClick={() => {
-                    navigate(`/website/${website_id}/notifications`);
-                  }}
-                  className=" mx-3 text-white  hover:text-gray-400 cursor-pointer duration-300"
-                >
-                  List notification
-                </span>
-              </>
-            )}
-            {page === "prompts" && (
-              <>
-                <span
-                  onClick={() => {
-                    navigate(`/website/${website_id}/prompts/add`);
-                  }}
-                  className=" mx-3 text-white  hover:text-gray-400 cursor-pointer duration-300"
-                >
-                  Create prompts
-                </span>
-                <span
-                  onClick={() => {
-                    navigate(`/website/${website_id}/prompts`);
-                  }}
-                  className=" mx-3 text-white  hover:text-gray-400 cursor-pointer duration-300"
-                >
-                  List prompts
-                </span>
-              </>
-            )}
-            {page === "ab" && (
-              <>
-                <span
-                  onClick={() => {
-                    navigate(`/website/${website_id}/ab/add`);
-                  }}
-                  className=" mx-3 text-white  hover:text-gray-400 cursor-pointer duration-300"
-                >
-                  Create AB Test
-                </span>
-                <span
-                  onClick={() => {
-                    navigate(`/website/${website_id}/ab`);
-                  }}
-                  className=" mx-3 text-white  hover:text-gray-400 cursor-pointer duration-300"
-                >
-                  List AB
-                </span>
-              </>
-            )}
-            {page === "segments" && (
-              <>
-                <span
-                  onClick={() => {
-                    navigate(`/website/${website_id}/segments/add`);
-                  }}
-                  className=" mx-3 text-white  hover:text-gray-400 cursor-pointer duration-300"
-                >
-                  Create segment
-                </span>
-                <span
-                  onClick={() => {
-                    navigate(`/website/${website_id}/segments`);
-                  }}
-                  className=" mx-3 text-white  hover:text-gray-400 cursor-pointer duration-300"
-                >
-                  List segments
-                </span>
-              </>
+            {page !== "your_websites" && (
+              <div className=" flex  mx-16 ">
+                <div className="mx-4 text-white ">
+                  <button onClick={handleOpenNavigation}>
+                    Notification{" "}
+                    <ion-icon
+                      name="chevron-down-outline"
+                      className="my-3 block "
+                    ></ion-icon>
+                  </button>
+                  {openNavigation ? (
+                    <ul className="menu">
+                      <li
+                        onClick={() => {
+                          navigate(`/website/${website_id}/notification/add`);
+                        }}
+                        className="menu-item my-2 hover:bg-gray-900 hover:px-3 hover:py-1 duration-200 cursor-pointer  "
+                      >
+                        Create Notification
+                      </li>
+                      <li
+                        onClick={() => {
+                          navigate(`/website/${website_id}/notifications`);
+                        }}
+                        className="menu-item my-2 hover:bg-gray-900 hover:px-3 hover:py-1 duration-200 cursor-pointer  "
+                      >
+                        List Notification
+                      </li>
+                    </ul>
+                  ) : null}
+                </div>
+                <div className="mx-4 text-white ">
+                  <button onClick={handleOpenSegment}>
+                    Segments{" "}
+                    <ion-icon
+                      name="chevron-down-outline"
+                      className="my-3 block "
+                    ></ion-icon>
+                  </button>
+                  {openSegment ? (
+                    <ul className="menu">
+                      <li
+                        onClick={() => {
+                          navigate(`/website/${website_id}/segments/add`);
+                        }}
+                        className="menu-item my-2 hover:bg-gray-900 hover:px-3 hover:py-1 duration-200 cursor-pointer  "
+                      >
+                        Create segment
+                      </li>
+                      <li
+                        onClick={() => {
+                          navigate(`/website/${website_id}/segments`);
+                        }}
+                        className="menu-item my-2 hover:bg-gray-900 hover:px-3 hover:py-1 duration-200 cursor-pointer  "
+                      >
+                        List segment
+                      </li>
+                    </ul>
+                  ) : null}
+                </div>
+                <div className="mx-4 text-white ">
+                  <button onClick={handleOpenPrompt}>
+                    Prompts{" "}
+                    <ion-icon
+                      name="chevron-down-outline"
+                      className="my-3 block "
+                    ></ion-icon>
+                  </button>
+                  {openPrompt ? (
+                    <ul className="menu">
+                      <li
+                        className="menu-item my-2 hover:bg-gray-900 hover:px-3 hover:py-1 duration-200 cursor-pointer  "
+                        onClick={() => {
+                          navigate(`/website/${website_id}/prompts/add`);
+                        }}
+                      >
+                        Create Prompt
+                      </li>
+                      <li
+                        className="menu-item my-2 hover:bg-gray-900 hover:px-3 hover:py-1 duration-200 cursor-pointer  "
+                        onClick={() => {
+                          navigate(`/website/${website_id}/prompts`);
+                        }}
+                      >
+                        List prompt
+                      </li>
+                    </ul>
+                  ) : null}
+                </div>
+                <div className="mx-4 text-white z-10 ">
+                  <button onClick={handleOpenAB}>
+                    A/B{" "}
+                    <ion-icon
+                      name="chevron-down-outline"
+                      className="my-3 block "
+                    ></ion-icon>
+                  </button>
+                  {openAB ? (
+                    <ul className="menu z-10">
+                      <li
+                        onClick={() => {
+                          navigate(`/website/${website_id}/ab/add`);
+                        }}
+                        className="menu-item my-2 hover:bg-gray-900 hover:px-3 hover:py-1 duration-200 cursor-pointer  "
+                      >
+                        Create A/B
+                      </li>
+                      <li
+                        className="menu-item my-2 hover:bg-gray-900 hover:px-3 hover:py-1 duration-200 cursor-pointer "
+                        onClick={() => {
+                          navigate(`/website/${website_id}/ab`);
+                        }}
+                      >
+                        List A/B
+                      </li>
+                    </ul>
+                  ) : null}
+                </div>
+              </div>
             )}
           </div>
         </div>

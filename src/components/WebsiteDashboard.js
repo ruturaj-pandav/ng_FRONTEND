@@ -29,7 +29,7 @@ export default class componentName extends Component {
   render() {
     return (
       <div className="">
-        {this.state.loggedin && <NavbarLogin />}
+        {this.state.loggedin && <NavbarLogin page ="website_dashboard" />}
         <WebsiteIntegrationButton />
       </div>
     );

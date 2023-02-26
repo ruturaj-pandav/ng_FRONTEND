@@ -55,7 +55,7 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div>
-        {this.state.loggedin && <NavbarLogin />}
+        {this.state.loggedin && <NavbarLogin  page= "your_websites"/>}
         <Websites
           loggedin={this.state.loggedin}
           website_data={this.state.website_data}
