@@ -16,7 +16,7 @@ export default function ABTestAnalyticsFigures({ ab_analytics }) {
       setvariant(1);
     }
   }
-  console.log("ye mila abhi : ", ab_analytics);
+
   let navigate = useNavigate();
   const [loader, setloader] = useState(true);
   const [loggedin, setloggedin] = useState(false);
