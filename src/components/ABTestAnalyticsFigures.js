@@ -40,7 +40,7 @@ export default function ABTestAnalyticsFigures({ ab_analytics }) {
 
   return (
     <div className="container mx-auto w-5/6 lg:w-2/3  ">
-      analytics here
+      {/* <span>analytics here</span> */}
       {loader ? (
         <Loader message="Getting analytiscs... please wait " />
       ) : ab_analytics.hasOwnProperty("ab_notifications") &&
@@ -53,7 +53,7 @@ export default function ABTestAnalyticsFigures({ ab_analytics }) {
               checked={variant === 2 ? true : false}
             />
           </div>
-          <div className="border ">
+          <div className="">
             {" "}
             <div>
               <span className="block  text-gray-400 "> Image</span>

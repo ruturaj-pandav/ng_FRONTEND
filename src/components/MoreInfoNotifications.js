@@ -57,7 +57,7 @@ export default function MoreInfoNotifications({ notification, closemoreinfo }) {
                     {/* {notification.schedule_datetime} */}
                     <span className="">
                       {" "}
-                      newDate        {moment(newDate).format("DD MMMM YYYY")}
+                              {moment(newDate).format("DD MMMM YYYY")}
                     </span>
                     <span className="mx-2 ">
                       {" "}
