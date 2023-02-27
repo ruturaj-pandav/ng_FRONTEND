@@ -31,7 +31,8 @@ export default class componentName extends Component {
     if (response) {
       if (response.data.status) {
        
-        this.setState({ ab_analytics: response.data });
+        this.setState({ ab_analytics: response.data.analytics });
+        
       }
       if (response.data.status === false && response.data.message !== "") {
       
