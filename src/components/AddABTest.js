@@ -42,22 +42,25 @@ export default function AddABTest() {
   const [segmentno, setsegmentno] = useState(null);
   const [segmentnoErrMsg, setsegmentnoErrMsg] = useState(null);
   function handleChange_SEGMENT(event) {
-    console.log("this is event.target.value in ab test  : " ,event.target.value);
+    console.log(
+      "this is event.target.value in ab test  : ",
+      event.target.value
+    );
     if (event.target.value === "Remove") {
       setsegmentno(null);
     } else {
-      console.log("setting : " , event.target.value)
+      console.log("setting : ", event.target.value);
       setsegmentno(event.target.value);
     }
-    console.log("now segmentno : " , segmentno)
+    console.log("now segmentno : ", segmentno);
   }
-  function handleChange_VARIANT() {
-    if (variant === 1) {
-      setvariant(2);
-    } else {
-      setvariant(1);
-    }
-  }
+  // function handleChange_VARIANT() {
+  //   if (variant === 1) {
+  //     setvariant(2);
+  //   } else {
+  //     setvariant(1);
+  //   }
+  // }
   //////////
   function allErrorMsg1Null() {
     settitle1ErrMsg("");
@@ -286,16 +289,42 @@ export default function AddABTest() {
   }
 
   return (
-    <> <PageTitle title="Add A/B"/>
+    <>
+      {" "}
+      <PageTitle title="Add A/B" />
       {loggedin && <NavbarLogin page="prompts" />}
       <div className="container">
         {" "}
-        <div className="  md:w-full   block shadow-sm my-3 p-3  mx-2">
-          <span className="block text-gray-500   ">Variant {variant}</span>{" "}
-          <Switch
+        <div className="  md:w-full   block  my-3 p-3  mx-2">
+          <span className="block text-gray-500  text-lg my-2 ">Variant {variant}</span>{" "}
+          <div className="flex">
+            <button
+              onClick={() => {
+                setvariant(1);
+              }}
+              className={` ${
+                variant === 1 &&
+                "border-blue-900 border bg-blue-500 px-2 py-1 text-white"
+              }   font-semibold border text-blue-400  border-blue-900 px-2`}
+            >
+              Button 1
+            </button>
+            <button
+              onClick={() => {
+                setvariant(2);
+              }}
+              className={` ${
+                variant === 2 &&
+                "border-blue-900 border bg-blue-500 px-2 py-1 text-white"
+              } font-semibold border text-blue-400  border-blue-900 px-2 `}
+            >
+              Button 2
+            </button>
+          </div>
+          {/* <Switch
             onChange={handleChange_VARIANT}
             checked={variant === 2 ? true : false}
-          />
+          /> */}
         </div>
         <div className="  grid grid-cols-2   ">
           <div className="col-span-2 md:col-span-1  shadow-sm mx-2 px-0 sm:px-3 my-4  rounded-2">
@@ -601,7 +630,9 @@ export default function AddABTest() {
         </div>{" "}
         <div className="shadow-sm shadow-cyan-500/50  p-3 mx-2 w-1/2 ">
           <div className="my-3 ">
-            <label className="block text-sm text-gray-500 capitalize">Segments</label>
+            <label className="block text-sm text-gray-500 capitalize">
+              Segments
+            </label>
             <select
               onChange={(event) => {
                 handleChange_SEGMENT(event);
