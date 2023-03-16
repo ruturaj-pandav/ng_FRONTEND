@@ -6,6 +6,7 @@ import PromptsList from "./PromptsList";
 import NavbarLogin from "./Navbar_Login"
 import PromptAdd from "./PromptAdd";
 import swal from "sweetalert";
+import PageTitle from "./PageTitle";
 export default class componentName extends Component {
   constructor() {
     super();
@@ -59,7 +60,7 @@ export default class componentName extends Component {
   }
   render() {
     return (
-      <>
+      <> <PageTitle  title="Prompts"/>
         {this.state.loggedin && <NavbarLogin page  ="prompts" />}
         <div>
           <PromptsList prompts={this.state.prompts} />

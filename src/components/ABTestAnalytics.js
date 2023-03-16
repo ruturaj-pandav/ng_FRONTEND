@@ -4,6 +4,7 @@ import NavbarLogin from "./Navbar_Login"
 import ABTestAnalyticsFigures from "./ABTestAnalyticsFigures";
 import swal from "sweetalert";
 import { verifyLogin } from "../helper";
+import PageTitle from "./PageTitle";
 export default class componentName extends Component {
   constructor() {
     super();
@@ -59,7 +60,7 @@ export default class componentName extends Component {
   }
   render() {
     return (
-      <>
+      <> <PageTitle  title="AB - Analytics"/>
        {this.state.loggedin && <NavbarLogin page  ="ab" />}
         <ABTestAnalyticsFigures ab_analytics={this.state.ab_analytics} />
       </>

@@ -7,6 +7,7 @@ import { verifyLogin } from "../helper.js";
 import { useState, useEffect } from "react";
 
 import { useParams, useNavigate, useLocation } from "react-router-dom";
+import PageTitle from "./PageTitle";
 export default function PromptEdit({}) {
   let navigate = useNavigate();
   let location = useLocation();
@@ -100,10 +101,12 @@ export default function PromptEdit({}) {
         }
       }
     }
-    setLoading(true);
+    setLoading(false);
   }
   return (
     <div>
+      {" "}
+      <PageTitle title="Edit prompt" />
       {loggedin && <NavbarLogin page="prompts" />}
       <div className="container mx-auto grid grid-cols-2 sm:gap-4  my-8  ">
         <div className=" col-span-2  md:col-span-2 lg:col-span-1">
@@ -117,7 +120,7 @@ export default function PromptEdit({}) {
           >
             <div className="my-3">
               <label className="text-gray-500 block my-2 font-sans text-sm ">
-                prompt type
+                Prompt Type
               </label>
               <select className="border rounded block py-1 px-2 w-full ">
                 <option>Slide</option>
@@ -128,11 +131,12 @@ export default function PromptEdit({}) {
             </div>
             <div className="my-3">
               <label className="text-gray-500 block my-2 font-sans text-sm ">
-                prompt text
+                Prompt Text
               </label>
               <input
                 className="border rounded  block py-1 px-2   w-full"
                 placeholder="enter value here "
+                maxlength="120"
                 value={prompt_text}
                 onChange={(e) => {
                   setPromptText(e.target.value);
@@ -140,15 +144,21 @@ export default function PromptEdit({}) {
               />{" "}
               <span className="text-sm text-red-500 block  my-1 ">
                 {prompt_text_errmsg}
-              </span>
+              </span>{" "}
+              {prompt_text.length === 120 && (
+                <span className="text-xs text-red-500 block  my-1 ">
+                  You have reached maximum characters limit. 120/120
+                </span>
+              )}
             </div>
             <div className="my-3">
               <label className="text-gray-400 block my-1   ">
-                button 1 label
+                Cancel Button Label
               </label>
               <input
                 className="border rounded  block py-1 px-2  w-full"
                 placeholder="enter value here "
+                maxlength="15"
                 value={btn_1_label}
                 onChange={(e) => {
                   setBtn1Label(e.target.value);
@@ -156,14 +166,20 @@ export default function PromptEdit({}) {
               />
               <span className="text-sm text-red-500 block  my-1 ">
                 {btn_1_label_errmsg}
-              </span>
+              </span>{" "}
+              {btn_1_label.length === 15 && (
+                <span className="text-xs text-red-500 block  my-1 ">
+                  You have reached maximum characters limit. 15/15
+                </span>
+              )}
             </div>
             <div className="my-3">
               <label className="text-gray-500 block my-2 font-sans text-sm ">
-                button 2 label
+                Subscribe Button Label
               </label>
               <input
                 value={btn_2_label}
+                maxlength="15"
                 className="border rounded  block py-1 px-2   w-full"
                 placeholder="enter value here "
                 onChange={(e) => {
@@ -172,7 +188,12 @@ export default function PromptEdit({}) {
               />{" "}
               <span className="text-sm text-red-500 block  my-1 ">
                 {btn_2_label_errmsg}
-              </span>
+              </span>{" "}
+              {btn_2_label.length === 15 && (
+                <span className="text-xs text-red-500 block  my-1 ">
+                  You have reached maximum characters limit. 15/15
+                </span>
+              )}
             </div>
             <div className="my-3">
               <label className="text-gray-500 block my-2 font-sans text-sm ">
@@ -205,7 +226,7 @@ export default function PromptEdit({}) {
                 : "hover:bg-blue-600 bg-blue-500 cursor-pointer"
             }  `}
           >
-            Edit Prompt
+            Save Prompt
           </button>
         </div>
         <div className="grid col-span-2 sm:col-span-1  md:col-span-2 lg:col-span-1   ">
@@ -247,7 +268,7 @@ export default function PromptEdit({}) {
                     />
                   </svg>
                 </div>
-                <div className="  col-span-3">
+                <div className="  col-span-3 break-words">
                   {prompt_text ? prompt_text : " "}
                 </div>
               </div>

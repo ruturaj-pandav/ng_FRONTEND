@@ -13,6 +13,7 @@ import { HiSpeakerWave } from "react-icons/hi2";
 import axios from "axios";
 import { verifyLogin } from "../helper";
 import swal from "sweetalert";
+import PageTitle from "./PageTitle";
 export default function AddNotification() {
   const location = useLocation();
   const website_domain =
@@ -208,6 +209,7 @@ export default function AddNotification() {
   }
   return (
     <>
+    <PageTitle title="Add Notifications"/>
       {loggedin && <NavbarLogin page="notifications" />}
       <div className="container-sm ">
         <div className=" grid grid-cols-2 gap-5 w-full  mx-auto">
@@ -223,7 +225,7 @@ export default function AddNotification() {
               <span className="text-3xl block">Add a new notification</span>
 
               <div className="my-3 ">
-                <label className="block text-sm text-gray-500 ">segments</label>
+                <label className="block text-sm text-gray-500 ">Select Segment</label>
                 <select
                   onChange={(event) => {
                     handleChange_SEGMENT(event);

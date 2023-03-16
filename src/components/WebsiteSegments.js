@@ -4,6 +4,7 @@ import NavbarLogin from "./Navbar_Login";
 import { verifyLogin } from "../helper.js";
 import axios from "axios";
 import swal from "sweetalert";
+import PageTitle from "./PageTitle";
 export default class componentName extends Component {
   constructor() {
     super();
@@ -93,6 +94,7 @@ export default class componentName extends Component {
   render() {
     return (
       <>
+      <PageTitle title="Segments"/>
     {this.state.loggedin &&     <NavbarLogin page="segments" />}
         <div>
           <SegmentsList

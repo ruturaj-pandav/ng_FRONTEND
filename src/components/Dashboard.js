@@ -4,6 +4,7 @@ import NavbarLogin from "./Navbar_Login.js";
 import axios from "axios";
 
 import { verifyLogin } from "../helper.js";
+import PageTitle from "./PageTitle.js";
 export default class Dashboard extends Component {
   constructor() {
     super();
@@ -55,6 +56,7 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div>
+           <PageTitle title="Your websites" />
         {this.state.loggedin && <NavbarLogin  page= "your_websites"/>}
         <Websites
           loggedin={this.state.loggedin}

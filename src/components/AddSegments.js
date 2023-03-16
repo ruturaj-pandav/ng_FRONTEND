@@ -7,6 +7,7 @@ import NavbarLogin from "./Navbar_Login.js";
 import { useState, useEffect } from "react";
 import { goTo, verifyLogin } from "../helper.js";
 import { useNavigate, useParams } from "react-router-dom";
+import PageTitle from "./PageTitle.js";
 
 export default function AddSegments() {
   const [loading, setLoading] = useState(false);
@@ -178,6 +179,7 @@ export default function AddSegments() {
 
   return (
     <>
+    <PageTitle  title="Add segments"/>
       {loggedin && <NavbarLogin page="segments" />}
       <div className="container mx-auto ">
         <form
@@ -188,12 +190,12 @@ export default function AddSegments() {
           }}
         >
           <span className="block text-2xl  my-2 font-semibold">
-            Add a new segment
+            Add a new Segment
           </span>
 
           <div className="my-3 ">
             <label className="block text-sm text-gray-500 ">
-              Name of segment
+              Name of Segment
             </label>
             <input
               value={name}

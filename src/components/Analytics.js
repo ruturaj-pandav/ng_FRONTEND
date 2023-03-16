@@ -4,6 +4,7 @@ import AnalyticsFigures from "./AnalyticsFigures";
 import axios from "axios";
 import swal from "sweetalert";
 import { verifyLogin } from "../helper";
+import PageTitle from "./PageTitle";
 
 export default class componentName extends Component {
   constructor() {
@@ -54,7 +55,7 @@ export default class componentName extends Component {
   }
   render() {
     return (
-      <>
+      <> <PageTitle  title="Notification Analytics"/>
           {this.state.loggedin && <NavbarLogin  />}
         <AnalyticsFigures analytics={this.state.analytics} />
       </>

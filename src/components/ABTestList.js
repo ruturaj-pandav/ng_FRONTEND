@@ -5,10 +5,8 @@ import Loader from "./Loader";
 import swal from "sweetalert";
 import moment from "moment";
 import axios from "axios";
-export default function ABTestList({ AB, getAB  , website_domain}) {
-
+export default function ABTestList({ AB, getAB, website_domain }) {
   async function deleteAB(ab_test_id) {
-
     let accessToken = localStorage.getItem("accessToken");
 
     let response = await axios.post(
@@ -22,13 +20,10 @@ export default function ABTestList({ AB, getAB  , website_domain}) {
       }
     );
     if (response) {
-     
       if (response.data.status === true) {
         getAB();
         swal("Deleted ", response.data.message, "success").then((response) => {
-       
           getAB();
-
         });
       }
       if (response.data.status === false) {
@@ -37,7 +32,6 @@ export default function ABTestList({ AB, getAB  , website_domain}) {
     } else {
     }
   }
-
 
   let { website_id } = useParams();
   const [loader, setloader] = useState(true);
@@ -50,13 +44,23 @@ export default function ABTestList({ AB, getAB  , website_domain}) {
 
   return (
     <div className="container mx-auto my-8 ">
-    
       <div className="w-full lg:w-3/4 mx-auto">
         {" "}
-        <span className="text-2xl block my-3 ">Your AB tests</span>
+        <div className="w-full flex justify-between ">
+          <span className="text-2xl block my-1 ">Your AB tests</span>
+          <button
+            onClick={() => {
+              navigate(`/website/${website_id}/ab/add`, {
+                state: { website_domain: website_domain },
+              });
+            }}
+            className="text-white   bg-gray-700 hover:bg-gray-900 rounded-1 py-1 px-2 my-2"
+          >
+            Create new AB test
+          </button>
+        </div>
         {loader && <Loader message="Getting A/B tests ... please wait " />}
-        {AB.status === true &&
-        AB.ab_tests.length > 0 ? (
+        {AB.status === true && AB.ab_tests.length > 0 ? (
           <table className="w-full my-4 border-black text-left ">
             <thead className=" capitalize  bg-gray-800 text-white ">
               <tr className="  text-sm ">
@@ -64,12 +68,12 @@ export default function ABTestList({ AB, getAB  , website_domain}) {
                   sno
                 </th>
                 <th scope="col" className="px-1 md:px-6 py-3">
-                 Variant 1 Title
+                  Variant 1 Title
                 </th>
                 <th scope="col" className="px-1 md:px-6 py-3">
-                 Variant 2 Title
+                  Variant 2 Title
                 </th>
-               
+
                 <th scope="col" className="px-1 md:px-6 py-3">
                   Schedule date-time
                 </th>
@@ -82,15 +86,15 @@ export default function ABTestList({ AB, getAB  , website_domain}) {
 
             <tbody>
               {AB.ab_tests.map((ab, index) => {
-              let dt = new Date(ab.schedule_datetime);
+                let dt = new Date(ab.schedule_datetime);
 
-              function subtractMinutes(date, minutes) {
-                date.setMinutes(date.getMinutes() - minutes);
+                function subtractMinutes(date, minutes) {
+                  date.setMinutes(date.getMinutes() - minutes);
 
-                return date;
-              }
+                  return date;
+                }
 
-              const newDate = subtractMinutes(dt, 330);
+                const newDate = subtractMinutes(dt, 330);
 
                 return (
                   <tr
@@ -112,7 +116,7 @@ export default function ABTestList({ AB, getAB  , website_domain}) {
                     <td className=" px-1 md:px-6 py-2  ">
                       <span className="block  my-1 ">
                         {" "}
-                        {moment(newDate).format("DD MMMM YYYY")}
+                        {moment(newDate).format("DD/MM/YYYY")}
                       </span>{" "}
                       <span className="block  my-1 font-semibold lg:font-normal ">
                         {" "}
@@ -121,18 +125,15 @@ export default function ABTestList({ AB, getAB  , website_domain}) {
                     </td>
 
                     <td className=" px-1 md:px-6 py-2   ">
-                     
                       <button
                         onClick={() => {
-                          navigate(
-                            `/website/${website_id}/ab/${ab.id}/view`
-                          );
+                          navigate(`/website/${website_id}/ab/${ab.id}/view`);
                         }}
                         className="bg-green-400 hover:bg-green-500 text-sm my-1 lg:my-0  block lg:inline w-full lg:w-fit text-white py-1 px-2 mx-1  uppercase rounded-1 text-lg"
                       >
                         analytics
                       </button>
-               
+
                       <button
                         onClick={() => {
                           //
@@ -145,7 +146,6 @@ export default function ABTestList({ AB, getAB  , website_domain}) {
                           }).then((willDelete) => {
                             if (willDelete) {
                               deleteAB(ab.id);
-                              
                             }
                           });
                         }}
@@ -164,16 +164,6 @@ export default function ABTestList({ AB, getAB  , website_domain}) {
             No AB Tests Found
           </span>
         )}
-        <button
-          onClick={() => {
-            navigate(`/website/${website_id}/ab/add` , {
-              state: { website_domain: website_domain },
-            });
-          }}
-          className="text-white   bg-gray-700 hover:bg-gray-900 rounded-1 py-1 px-2 my-2"
-        >
-          Create new AB test
-        </button>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import axios from "axios";
 import swal from "sweetalert";
 import Modal from "./Modal.js";
 import NavbarLogout from "./Navbar_Logout.js";
+import PageTitle from "./PageTitle.js";
 
 export default function Login() {
   let navigate = useNavigate();
@@ -85,8 +86,9 @@ export default function Login() {
 
   return (
     <>
+      {" "}
+      <PageTitle title="Login" />
       <NavbarLogout />
-
       <div className="container mx-auto ">
         <div
           className="flex items-center sm:justify-center    "
@@ -114,7 +116,9 @@ export default function Login() {
                   }}
                 />
                 {emailErrorMessage !== "" && emailErrorMessage !== "" ? (
-                  <span className="text-danger text-sm  ">{emailErrorMessage}</span>
+                  <span className="text-danger text-sm  ">
+                    {emailErrorMessage}
+                  </span>
                 ) : null}
               </div>
               <div className="my-3">
@@ -132,7 +136,8 @@ export default function Login() {
                   </span>
                 ) : null}
               </div>
-              <button  disabled={loading}
+              <button
+                disabled={loading}
                 type="submit"
                 className={`w-100  ${
                   loading
@@ -140,7 +145,7 @@ export default function Login() {
                     : "hover:bg-blue-600 bg-blue-500 cursor-pointer"
                 }    rounded py-1 my-1 text-lg text-white`}
               >
-                {loading ? 'Loading...' : 'Login '}
+                {loading ? "Loading..." : "Login "}
               </button>{" "}
             </form>
             <span
@@ -154,8 +159,6 @@ export default function Login() {
           </div>
         </div>{" "}
       </div>
-
-     
     </>
   );
 }

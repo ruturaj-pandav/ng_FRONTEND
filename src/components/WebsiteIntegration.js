@@ -28,6 +28,8 @@ export default function WebsiteIntegration() {
       });
   }
 
+  const [step1text, setstep1text] = "https://{DOMAIN_HERE}/service-worker.js";
+
   const [text, setText] = useState(
     `<script src="${process.env.REACT_APP_BACKEND_BASE}/service-worker.js" async=""></script>`
   );
@@ -45,7 +47,7 @@ export default function WebsiteIntegration() {
   }, []);
   return (
     <>
-   {loggedin &&    <NavbarLogin />}
+      {loggedin && <NavbarLogin />}
       <div className="container mx-auto ">
         <div className="  px-4 rounded my-3 w-full md:w-2/3 lg:w-1/2 mx-auto  p-2  sm:shadow sm:border-gray-200">
           <span className="text-4xl block my-6 text-gray-500 font-sans">
@@ -58,7 +60,8 @@ export default function WebsiteIntegration() {
             </span>
             <span className="text-gray-500  my-3   block ">
               Next, you will need to download our service-worker.js file and
-              upload it to the top-level root of your site directory.
+              upload it to the top-level root of your site directory such that
+              the file is accessible as {step1text}
             </span>
             <button
               className="bg-gray-500 hover:bg-gray-600 duration-300 text-white rounded py-1 px-2"
@@ -77,8 +80,9 @@ export default function WebsiteIntegration() {
               STEP 2
             </span>
             <span className="text-gray-500 my-3   block">
-              If you haven't already, add this code to the head . section on all
-              pages of your site that users can subscribe to.
+              To enable push notifications on your website , you will need to
+              add the following code to the head section of every page where you
+              prompt the users to enable push notifications
             </span>{" "}
             <span
               onClick={() => {

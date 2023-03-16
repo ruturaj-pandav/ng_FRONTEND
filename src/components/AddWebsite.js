@@ -5,6 +5,7 @@ import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 import NavbarLogin from "./Navbar_Login"
 import Container from "react-bootstrap/Container";
+import PageTitle from "./PageTitle";
 
 import { goTo, verifyLogin } from "../helper";
 export default function AddWebsite() {
@@ -83,7 +84,7 @@ export default function AddWebsite() {
     setLoading(false);
   }
   return (
-    <>
+    <>    <PageTitle title="Add Website" />
       {loggedin && <NavbarLogin page  ="prompts" />}
       <div className=" container  mt-5  ">
         <div className=" w-full  md:w-1/2 mx-auto md:border py-3 px-4 rounded  ">

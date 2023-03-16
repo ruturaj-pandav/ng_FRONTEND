@@ -4,6 +4,7 @@ import NavbarLogin from "./Navbar_Login"
 import ABTestList from "./ABTestList";
 import axios from "axios";
 import swal from "sweetalert";
+import PageTitle from "./PageTitle";
 export default class componentName extends Component {
   constructor() {
     super();
@@ -106,6 +107,7 @@ export default class componentName extends Component {
   render() {
     return (
       <>
+         <PageTitle title="AB " />
           {this.state.loggedin && <NavbarLogin page  ="ab" />}
         <div>
           <ABTestList AB={this.state.AB} getAB={this.getAB} website_domain={this.state.website_domain}/>

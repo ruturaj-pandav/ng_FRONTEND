@@ -54,7 +54,7 @@ export default function MoreInfoNotifications({ notification, closemoreinfo }) {
                   </span>
                   <span className="text-lg block ">
                     {" "}
-                    {/* {notification.schedule_datetime} */}
+                    {/* {notificaupdateWatchlisttion.schedule_datetime} */}
                     <span className="">
                       {" "}
                               {moment(newDate).format("DD MMMM YYYY")}

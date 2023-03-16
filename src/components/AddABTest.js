@@ -15,6 +15,7 @@ import Switch from "react-switch";
 import swal from "sweetalert";
 import chromeicon from "../images/chrome_image.jpeg";
 import mobile_view_backend from "../images/mobile_view_backend.png";
+import PageTitle from "./PageTitle";
 export default function AddABTest() {
   useEffect(() => {
     verifyLogin().then((data) => {
@@ -285,7 +286,7 @@ export default function AddABTest() {
   }
 
   return (
-    <>
+    <> <PageTitle title="Add A/B"/>
       {loggedin && <NavbarLogin page="prompts" />}
       <div className="container">
         {" "}
@@ -600,7 +601,7 @@ export default function AddABTest() {
         </div>{" "}
         <div className="shadow-sm shadow-cyan-500/50  p-3 mx-2 w-1/2 ">
           <div className="my-3 ">
-            <label className="block text-sm text-gray-500 ">segments</label>
+            <label className="block text-sm text-gray-500 capitalize">Segments</label>
             <select
               onChange={(event) => {
                 handleChange_SEGMENT(event);

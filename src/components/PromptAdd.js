@@ -5,6 +5,7 @@ import swal from "sweetalert";
 import NavbarLogin from "./Navbar_Login"
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import PageTitle from "./PageTitle";
 export default function PromptAdd({}) {
   let navigate = useNavigate();
   let { website_id } = useParams();
@@ -106,7 +107,7 @@ export default function PromptAdd({}) {
     });
   }, []);
   return (
-    <>
+    <> <PageTitle  title="Create prompt"/>
        {loggedin && <NavbarLogin page  ="prompts" />}
       <div className="container mx-auto grid grid-cols-2 sm:gap-4  my-8  ">
         <div className=" col-span-2  md:col-span-2 lg:col-span-1">
@@ -156,7 +157,7 @@ export default function PromptAdd({}) {
             </div>
             <div className="my-3">
               <label className="text-dark-800 font-medium	 block my-1   ">
-                Later Button Label
+                Cancel Button Label
               </label>
               <input
                 className="border rounded  block py-1 px-2  w-full"
@@ -274,7 +275,7 @@ export default function PromptAdd({}) {
                     />
                   </svg>
                 </div>
-                <div className="  col-span-3">
+                <div className="  col-span-3  break-words">
                   {prompt_text ? prompt_text : " "}
                 </div>
               </div>

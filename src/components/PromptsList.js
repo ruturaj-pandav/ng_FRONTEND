@@ -13,7 +13,17 @@ export default function PromptsList({ prompts }) {
   return (
     <div className="container  mx-auto  my-8">
       <div className="relative overflow-x-auto my-3  w-full lg:w-3/4 mx-auto">
-        <span className="text-2xl block my-3">Prompts List</span>
+        <div className="w-full flex justify-between">
+
+        <span className="text-2xl block my-1">Prompts List</span>      <button
+          onClick={() => {
+            navigate(`/website/${website_id}/prompts/add`);
+          }}
+          className="text-white rounded-1 block  px-2 bg-gray-700 hover:bg-gray-900 text-right"
+        >
+          Add new prompt
+        </button>
+        </div>
         {loader ? (
           <Loader message="Getting Prompts ... please wait " />
         ) : prompts.prompts.length > 0 ? (
@@ -39,12 +49,12 @@ export default function PromptsList({ prompts }) {
                 <th scope="col" className="px-6 py-3">
                   Prompt text
                 </th>
-                <th scope="col" className="  px-6 py-3">
+                {/* <th scope="col" className="  px-6 py-3">
                   Button 1 Label
                 </th>
                 <th scope="col" className="  px-6 py-3">
                   Button 2 Label
-                </th>
+                </th> */}
                 <th scope="col" className="px-6 py-3">
                   Delay
                 </th>
@@ -67,9 +77,9 @@ export default function PromptsList({ prompts }) {
                     <td className="  px-6 py-2   ">{index + 1}</td>
                     <td className="  px-6 py-2   ">{prompt.prompt_type}</td>
                     <td className="  px-6 py-2  ">{prompt.prompt_text}</td>
-                    <td className="  px-6 py-2  ">{prompt.btn_1_label}</td>
-                    <td className="px-6 py-2  ">{prompt.btn_2_label}</td>
-                    <td className=" px-6 py-2  ">{prompt.settings.delay}</td>
+                    {/* <td className="  px-6 py-2  ">{prompt.btn_1_label}</td>
+                    <td className="px-6 py-2  ">{prompt.btn_2_label}</td> */}
+                    <td className=" px-6 py-2  ">{prompt.settings.delay / 1000} seconds</td>
                     <td className=" px-6 py-2  ">
                       <button
                         onClick={() => {
@@ -78,9 +88,9 @@ export default function PromptsList({ prompts }) {
                             { state: { prompt } }
                           );
                         }}
-                        className="bg-yellow-400 hover:scale-110 text-white p-1  rounded-1 text-sm"
+                        className="bg-orange-400 hover:scale-110 text-white p-1  capitalize rounded-1 text-sm"
                       >
-                        edit
+                        customize
                       </button>
                     </td>
                   </tr>
@@ -93,14 +103,7 @@ export default function PromptsList({ prompts }) {
             No prompts Found
           </span>
         )}
-        <button
-          onClick={() => {
-            navigate(`/website/${website_id}/prompts/add`);
-          }}
-          className="text-white rounded-1 block py-1 px-2 bg-gray-700 hover:bg-gray-900 text-right"
-        >
-          Add new prompt
-        </button>
+  
       </div>
     </div>
   );

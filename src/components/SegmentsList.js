@@ -68,7 +68,18 @@ export default function SegmentsList({
   return (
     <div className="container mx-auto  my-8  ">
       <div className=" relative overflow-x-auto my-3  w-full  mx-auto ">
-        <span className="text-2xl block my-3 ">Your segments</span>
+       
+        <div className="w-full flex justify-between ">
+        <span className="text-2xl block my-2 ">Your segments</span>
+        <button
+          onClick={() => {
+            navigate(`/website/${website_id}/segments/add`);
+          }}
+          className="text-white   bg-gray-700 hover:bg-gray-900 rounded-1 py-1 px-2 my-2"
+        >
+          Add new segment
+        </button>
+        </div>
         {loader ? (
           <Loader message="Getting segments ... please wait " />
         ) : countries_list.length > 0 && segments.segments.length > 0 ? (
@@ -284,7 +295,7 @@ export default function SegmentsList({
                     </td>
 
                     <td className="px-6 py-2 ">
-                      <button
+                      {/* <button
                         onClick={() => {
                           navigate(
                             `/website/${website_id}/segments/edit/${segment.id}`,
@@ -299,7 +310,7 @@ export default function SegmentsList({
                         className="bg-yellow-500 mx-1 block md:inline w-full my-0.5 hover:bg-yellow-600 text-white py-1 px-2 capitalize    rounded-1 text-sm"
                       >
                         edit
-                      </button>
+                      </button> */}
                       <button
                         onClick={() => {
                           //
@@ -333,14 +344,7 @@ export default function SegmentsList({
           </span>
         )}
 
-        <button
-          onClick={() => {
-            navigate(`/website/${website_id}/segments/add`);
-          }}
-          className="text-white   bg-gray-700 hover:bg-gray-900 rounded-1 py-1 px-2 my-2"
-        >
-          Add new segment
-        </button>
+  
       </div>
     </div>
   );

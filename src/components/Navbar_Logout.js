@@ -3,7 +3,7 @@ import { goTo, logoutFunction } from "../helper.js";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import swal from "sweetalert";
-import zomato from "../images/logo.png";
+// import zomato from "../images/logo.png";
 export default function NavbarLogout({ }) {
   let navigate = useNavigate();
   let { website_id } = useParams();
@@ -18,7 +18,7 @@ export default function NavbarLogout({ }) {
         <div className=" flex  flex-start">
           <div className="inline-block ">
             <img
-              src={zomato}
+              // src={zomato}
               className="h-12 w-18"
               onClick={() => {
                 navigate("/");

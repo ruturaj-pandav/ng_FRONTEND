@@ -5,6 +5,7 @@ import NavbarLogout from "./Navbar_Logout.js";
 import { useState, useEffect } from "react";
 import { goTo, verifyLogin } from "../helper.js";
 import { useNavigate } from "react-router-dom";
+import PageTitle from "./PageTitle.js";
 
 export default function SignUp() {
   let navigate = useNavigate();
@@ -99,7 +100,7 @@ export default function SignUp() {
   const [accountCreated, setAccountCreated] = useState(null);
   //
   return (
-    <>
+    <> <PageTitle  title="Sign up"/>
       <NavbarLogout />
       <div className="container mx-auto ">
         <div

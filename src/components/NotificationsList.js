@@ -25,11 +25,9 @@ export default function NotificationsList({
       }
     );
     if (response) {
-     
       if (response.data.status === true) {
         // getnotifications();
         swal("Deleted ", response.data.message, "success").then((response) => {
-        
           getnotifications();
         });
       }
@@ -80,7 +78,19 @@ export default function NotificationsList({
       )}
       <div className="w-full lg:w-3/4 mx-auto">
         {" "}
-        <span className="text-2xl block my-3 ">Your notifications</span>
+        <div className="w-full  flex justify-between ">
+          <span className="text-2xl block my-2 ">Your Notifications</span>
+          <button
+            onClick={() => {
+              navigate(`/website/${website_id}/notification/add`, {
+                state: { website_domain: website_domain },
+              });
+            }}
+            className="text-white   bg-gray-700 hover:bg-gray-900 rounded-1 py-1 px-2 my-2"
+          >
+            Add new notification
+          </button>
+        </div>
         {loader && <Loader message="Getting Notifications ... please wait " />}
         {notifications.status === true &&
         notifications.notifications.length > 0 ? (
@@ -88,7 +98,7 @@ export default function NotificationsList({
             <thead className=" capitalize  bg-gray-800 text-white ">
               <tr className="  text-sm ">
                 <th scope="col" className="px-1 md:px-6 py-3">
-                  sno
+                  Sr. No
                 </th>
                 <th scope="col" className="px-1 md:px-6 py-3">
                   Notification title{" "}
@@ -98,10 +108,14 @@ export default function NotificationsList({
                 <th scope="col" className="px-1 md:px-6 py-3">
                   Schedule date-time
                 </th>
-
+                <th scope="col" className="px-1 md:px-6 py-3">
+                  Status
+                </th>
                 <th scope="col" className="px-1 md:px-6 py-3">
                   Actions
                 </th>
+
+                
               </tr>
             </thead>
 
@@ -135,14 +149,29 @@ export default function NotificationsList({
                     <td className=" px-1 md:px-6 py-2  ">
                       <span className="block  my-1 ">
                         {" "}
-                        {moment(newDate).format("DD MMMM YYYY")}
+                        {moment(newDate).format("DD/MM/YYYYY")}
                       </span>{" "}
                       <span className="block  my-1 font-semibold lg:font-normal ">
                         {" "}
                         {moment(newDate).format("hh:mm:ss")}
                       </span>{" "}
                     </td>
-
+                    <td className="px-1   md:px-6 py-2 ">
+                      <span
+                        className={`${
+                          notification.status === "Completed" &&
+                          "text-green-500 font-semibold   block   py-1 px-2 "
+                        } ${
+                          notification.status === "Pending" &&
+                          " text-orange-300 font-semibold   block   py-1 px-2 "
+                        } ${
+                          notification.status === "Error" &&
+                          " text-red-500 font-semibold   block   py-1 px-2 "
+                        }`}
+                      >
+                        {notification.status}
+                      </span>
+                    </td>
                     <td className=" px-1 md:px-6 py-2   ">
                       <button
                         onClick={() => {
@@ -195,6 +224,7 @@ export default function NotificationsList({
                         delete
                       </button>
                     </td>
+                   
                   </tr>
                 );
               })}
@@ -205,16 +235,6 @@ export default function NotificationsList({
             No Notifications Found
           </span>
         )}
-        <button
-          onClick={() => {
-            navigate(`/website/${website_id}/notification/add`, {
-              state: { website_domain: website_domain },
-            });
-          }}
-          className="text-white   bg-gray-700 hover:bg-gray-900 rounded-1 py-1 px-2 my-2"
-        >
-          Add new notification
-        </button>
       </div>
     </div>
   );
