@@ -46,7 +46,7 @@ export default function ABTestAnalyticsFigures({ ab_analytics }) {
       ) : ab_analytics.hasOwnProperty("ab_notifications") &&
         ab_analytics.ab_notifications.length > 0 ? (
         <div>
-          <span>AB test analytics</span>
+          <span className="block text-center h3  my-4 capitalize">AB test analytics</span>
           <div className=" grid grid-cols-2 gap-4  divide-x divide-gray-300 ">
             <div className=" py-5 px-3">
               <span className="h4 block text-center ">Variant A</span>
