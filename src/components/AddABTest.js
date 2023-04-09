@@ -304,8 +304,8 @@ export default function AddABTest() {
               }}
               className={` ${
                 variant === 1 &&
-                "border-blue-900 border bg-blue-500 px-2 py-1 text-white"
-              }   font-semibold border text-blue-400  border-blue-900 px-2`}
+                "  bg-blue-500 px-2 py-1 text-white"
+              }    font-semibold border-l border-t border-b text-blue-500  border-blue-500 px-2`}
             >
               Button 1
             </button>
@@ -315,8 +315,8 @@ export default function AddABTest() {
               }}
               className={` ${
                 variant === 2 &&
-                "border-blue-900 border bg-blue-500 px-2 py-1 text-white"
-              } font-semibold border text-blue-400  border-blue-900 px-2 `}
+                "  bg-blue-500 px-2 py-1 text-white"
+              } font-semibold border-r border-t border-b text-blue-500  border-blue-500 px-2 `}
             >
               Button 2
             </button>

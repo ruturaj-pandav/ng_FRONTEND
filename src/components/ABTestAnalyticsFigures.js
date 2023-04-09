@@ -21,7 +21,7 @@ export default function ABTestAnalyticsFigures({ ab_analytics }) {
   let navigate = useNavigate();
   const [loader, setloader] = useState(true);
   const [loggedin, setloggedin] = useState(false);
-  // console.log("ye hai ab" , ab_analytics , ab)
+
   useEffect(() => {
     if (ab_analytics.hasOwnProperty("ab_notifications")) {
       setloader(false);
