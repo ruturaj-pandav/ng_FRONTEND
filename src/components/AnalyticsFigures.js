@@ -25,17 +25,24 @@ export default function AnalyticsFigures({ analytics }) {
   return (
     <div className="container mx-auto w-5/6 lg:w-3/4 py-3   ">
       <div>
+        {console.log("analytics", analytics)}
         <span className="block h4  text-center my-3">Notification details</span>
-        <div className="border w-5/6  mx-auto grid grid-cols-3 gap-3">
-          <div className="col-span-1 border">image and all</div>
-          <div className="col-span-2 border px-3">
+        <div className="border w-5/6  mx-auto grid grid-cols-3 gap-3 p-3">
+          <div className="col-span-1 border-2 border-gray-800">
+            <div>imge here</div>
+            <div className="p-2 border-t border-gray-600">
+              <span className="block text-lg font-semibold capitalize  ">{analytics.title}</span>
+              <span className="block font-semibold capitalize ">{analytics.body_text}</span>
+            </div>
+          </div>
+          <div className="col-span-2  px-3">
             <div className="my-3">
               <span className="my-1 font-semibold ">Schedule date</span>
               <span className="my-1 mx-3">date</span>
             </div>
             <div className="my-3">
               <span className="my-1 font-semibold ">Redirect URL</span>
-              <span className="my-1 mx-3">{analytics.redirect_url }</span>
+              <span className="my-1 mx-3">{analytics.redirect_url}</span>
             </div>
             <div className="my-3">
               <span className="my-1 font-semibold ">Schedule date</span>
@@ -43,7 +50,7 @@ export default function AnalyticsFigures({ analytics }) {
             </div>
           </div>
         </div>
-        <span className="block h4  text-center my-3">Notifcation analysis</span>
+        <span className="block h4  text-center my-3 capitalize " >Notifcation analysis</span>
         <div className="grid grid-cols-3    gap-4 w-5/6 mx-auto ">
           <div className="border-2 border-gray-500 p-3 my-2 bg-gray-100">
             <span className="block my-2 text-gray-400 h6">

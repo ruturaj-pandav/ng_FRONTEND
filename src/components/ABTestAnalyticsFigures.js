@@ -46,12 +46,22 @@ export default function ABTestAnalyticsFigures({ ab_analytics }) {
       ) : ab_analytics.hasOwnProperty("ab_notifications") &&
         ab_analytics.ab_notifications.length > 0 ? (
         <div>
-          <span className="block text-center h3  my-4 capitalize">AB test analytics</span>
+          <span className="block text-center h3  my-4 capitalize">
+            AB test analytics
+          </span>
           <div className=" grid grid-cols-2 gap-4  divide-x divide-gray-300 ">
             <div className=" py-5 px-3">
               <span className="h4 block text-center ">Variant A</span>
-              <div className="border-2 my-3  w-full w-3/4 mx-auto py-5  ">
-                <div className="w-3/4 mx-auto border-2 ">small bard</div>
+              <div className="border-2  border-gray-500 my-3  w-full w-3/4 mx-auto py-5  ">
+                <div className="w-3/4 mx-auto border-2 ">
+                  <div>img here</div>
+                  <div className="p-2 border-t border-gray-800">
+                    <span className="block text-lg font-semibold capitalize">
+                    {ab_analytics.ab_notifications[0].title}
+                    </span>
+                    <span className="block font-semibold capitalize">    {ab_analytics.ab_notifications[0].body_text}</span>
+                  </div>
+                </div>
                 <div className="w-3/4 mx-auto my-3 ">
                   <div className="my-2">
                     <span className="font-semibold ">Schedule date</span>
@@ -113,8 +123,16 @@ export default function ABTestAnalyticsFigures({ ab_analytics }) {
             </div>
             <div className=" py-5 px-3">
               <span className="h4 block text-center ">Variant B</span>
-              <div className="border-2 my-3 w-full w-3/4 mx-auto py-5  ">
-                <div className="w-3/4 mx-auto border-2 ">small bard</div>
+              <div className="border-2  border-gray-500 my-3 w-full w-3/4 mx-auto py-5  ">
+                <div className="w-3/4 mx-auto border-2 ">
+                  <div>img here</div>
+                  <div className="p-2 border-t border-gray-800">
+                    <span className="block text-lg font-semibold capitalize">
+                    {ab_analytics.ab_notifications[1].title}
+                    </span>
+                    <span className="block font-semibold capitalize">  {ab_analytics.ab_notifications[1].body_text}</span>
+                  </div>
+                </div>
                 <div className="w-3/4 mx-auto my-3 ">
                   <div className="my-2">
                     <span className="font-semibold ">Schedule date</span>
